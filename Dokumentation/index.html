@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Visual Design, SoSe 2023</title>
+
+    <!-- Stylesheets -->
+    <link type="text/css" href="style/normalize.css" rel="stylesheet" />
+    <link type="text/css" href="style/skeleton.css" rel="stylesheet" />
+    <link type="text/css" href="style/main.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans|IBM+Plex+Sans+Condensed"
+        rel="stylesheet">
+
+    <!-- Scripts -->
+
+</head>
+
+<body>
+
+    <header id="header" class="header">
+        <div class="container" id="nav-container">
+            <h5 id="title">Der Botanische Garten - Visualisierung von großen Daten</h5>
+            <hr>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a href="#section1">Analyse</a></li>
+                <li><a href="#section2">Visualisierungsmethodik</a></li>
+                <li><a href="#section3">Storyboards</a></li>
+                <li><a href="#section4">Umsetzung</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <div id="main-container" class="container">
+        <a class="anchor" id="section1"></a>
+        <h4>Analyse</h4>
+        <div class="row">
+            <div class="nine columns">Die Analyse-Phase dient dazu, sich einen Überblick zum Thema "Botanischen Garten" zu schaffen 
+                und Inspiration für mögliche Vertiefungsbereiche, Visualisierungen, Datensätze & Farbschema zu sammeln. Daraufhin wird der Fokus auf ein Vertiefungsberich gelegt.
+            </div>
+        </div>
+
+        <h5>Mindmap</h5>
+        <div class="row">
+            <div class="twelve columns">
+                <img src="./assets/Mindmap.png" />
+            </div>
+        </div>
+
+        <h5>Datensätze</h5>
+        <div class="row">
+            <div class="four columns">
+                <div><b>GADM</b></div>
+                Stellt GeoDaten in Form von GeoJSON Dateien für unterschiedliche Länder bereit.<br>
+                Verfügt über verschiedene Detail-Grade der Regionen (Land, Bundesländer, Region, usw.). <br>
+                <a href="https://gadm.org/download_country.html">Link</a></div>
+
+                <div class="four columns">
+                <div><b>Pl@ntNet</b></div>
+                Datenbank zu spontanen Beoachtungen von Pflanzen auf der ganzen Welt. <br>
+                <a href="https://www.gbif.org/dataset/14d5676a-2c54-4f94-9023-1e8dcd822aa0">Link</a></div>
+
+                <div class="four columns">
+                <div><b>GBIF</b></div>
+                 Datenbank, die weitere Datenbanken zu Tier- und Pflanzenbeoachtungen zusammenfasst.<br>
+                 <a href="https://www.gbif.org/occurrence/charts?occurrence_status=present">Link</a></div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <div><b>ULM Datenportal</b></div>
+                Datenportal mit Einträgen zu Wetterstationen, Bodenfeutigkeit, Luftqualitätssensoren & Wassertemperatur in Ulm.<br>
+                <a href="https://datenhub.ulm.de/ckan/organization/citysens">Link</a></div>
+
+                <div class="four columns">
+                <div><b>Wetterdaten: Konstanz</b></div>
+                Datenstz zur Wetterstation 02712 in Konstanz. Enthält Daten zur Temperatur, Druck, Niederschlag, Sonnenscheindauer, usw..<br>
+                <a href="https://www.daten-bw.de/web/guest/suchen/-/details/historische-wetterdaten">Link</a></div>
+
+                <div class="four columns">
+                <div><b>Baumbestand: Bielefeld</b></div>
+                Datensatz zum Baumbestand in Bielefeld. Enthält informationen zur Position, Baumart, Stamm- & Kronnendurchmesser, Baumhöhe.<br>
+                 <a href="https://open-data.bielefeld.de/dataset/a9442cf1-7f88-4d7e-9fb7-b2a294f533e7/resource/295aded8-e24b-469a-9a53-eb71d824f8ce">Link</a></div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <div><b>Baysics Portal</b></div>
+                Bayerisches Datenportal um den Einfluss des Klimawandels auf Tiere & Pflanzen in Bayern zu beobachten & analysieren. 
+                Datensatz besteht aus Spontan-Aufnahmen von Beteiligten.<br>
+                Kaum Daten verfügbar. <br>
+                <a href="https://www.portal.baysics.de/downloads/">Link</a></div>
+
+                <div class="four columns">
+                <div><b>GENESIS-Online</b></div>
+                Enthält Einträge zur Kultivierung & Nutzung von Zierpflanzen in Deutschland (Angebaute Zierpflanzen, Zierpflanzen in deutschen Haushalten, usw.)<br>
+                Unzuverlässiges Abrufen von Daten. <br>
+                <a href="https://www-genesis.destatis.de/genesis/online?operation=find&suchanweisung_language=en&query=41213#abreadcrumb">Link</a></div>
+
+                <div class="four columns">
+                    <div><b>Gardens4Science</b></div>
+                    Datenbank zu Anzahl an Pflanzenindividuen & Lebendsammlungen Botanischer Gärten.<br>
+                     <a href="http://gardens4science.biocase.org/evoboga_portal/search/index">Link</a></div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <div><b>Universitätssammlungen</b></div>
+                Datenbank zu verschiedenen botanischen Sammlungen (Botanische Gärten, Museen & Universitäten) in Deutschland.<br>
+                <a href="http://www.universitaetssammlungen.de/sammlung/373">Link</a></div>
+        </div>
+
+        <h5>Fragekatalog</h5>
+        <div class="row">
+            <div class="six columns">
+                <div><b>Pflanzenarten</b></div>
+                <div>
+                    <ul>
+                        <li>Wie viele verscheidene Arten gibt es in Deutschland/Europa/Welt?</li>
+                        <li>Wie verbreitet ist jeweils eine Pflanzenart in der Welt / Land / Region?</li>
+                        <li>Wie viele Arten sind vom Aussterben bedroht/ stehen kurz vor dem Aussterben?</li>
+                        <li>Wie viele Arten sind in einem Land / Region vom Aussterben bedroht / stehen kurz vor dem Aussterben?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="six columns">
+                <div><b>Pflanzen Sichtungen</b></div>
+                <div>
+                    <ul>
+                        <li>Welche Pflanzen werden am meisten / wenigsten gesichtet?</li>
+                        <li>Wie oft wurde eine Pflanzenart im Monat / Jahr / Gesamt gesichtet?</li>
+                        <li>Wie viele Pflanzen wurden pro Tag / Woche / Monat / Jahr gesichtet?</li>
+                        <li>Wie viele Pflanzen wurden in einem Kontinent / Land / Region gesichtet?</li>
+                        <li>Welche Pflanzenarten  wurden in einem Kontinent / Land / Region gesichtet?</li>
+                        <li>Welches Land / Region hat die meisten / wenigsten Sichtungen?</li>
+                    </ul>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="six columns">
+                <div><b>Naturschutzgebiete / Nationalparks</b></div>
+                <div>
+                    <ul>
+                        <li>Wann wurde ein Naturschutzgebiet deklariert?</li>
+                        <li>Welche internationalen Abkommen gibt existieren zum Schutz bedrohter Pflanzenarten?</li>
+                        <li>Wie groß ist das Naturschutzgebiet? </li>
+                        <li>Wie viele Besucher gibt es pro Monat / Jahr?</li>
+                        <li>Wie viele Naturschutzgebiete hat ein Land / Region?</li>
+                        <li>Welche Arten werden im Naturschutzgebiet geschützt?</li>
+                        <li>Welchen Einfluss hat die Landwirtschaft auf Wildpflanzen?</li>
+                        <li>Wie tragen NGOs zum Pflanzenschutz bei?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="six columns">
+                <div><b>Botanische Gärten</b></div>
+                <div>
+                    <ul>
+                        <li>Wann wurde der Botanische Garten eröffnet?</li>
+                        <li>Wie viele Arten sind ausgestellt?</li>
+                        <li>Wie viele Besucher gibt es pro Tag / Woche / Monat / Jahr?</li>
+                        <li>Wie viele Botanische Gärten gibt es in der Welt / Kontinent / Land?</li>
+                        <li>Wie sind die Öffnungszeiten eines Botanischen Gartens?</li>
+                        <li>Wie viele vom Aussterben bedrohte Arten gibt es im Botanischen Garten? </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six columns">
+                <div><b>Bäume</b></div>
+                <div>
+                    <ul>
+                        <li>Wie viele Bäume gibt es auf einem Kontinent / Land / Region?</li>
+                        <li>Wie viele Baumarten gibt es auf einem Kontinent / Land / Region?</li>
+                        <li>Wie viele Bäume werden pro Jahr gefällt?</li>
+                        <li>Wie viele Bäume werden in einem Land / Region pro Jahr gefällt?</li>
+                        <li>Wie viele Baumarten sind vom Aussterben bedroht?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="six columns">
+                <div><b>Klimawandel & Ökosystem</b></div>
+                <div>
+                    <ul>
+                        <li>Wie beeinflusst der Klimawandel bestimmte Pflanzenarten?</li>
+                        <li>Gibt es Pflanzenarten die als Indikatoren für Klimaveränderungen dienen?</li>
+                        <li>Welche Pflanzenarten haben sich an extreme Klimabedingungen angepasst?</li>
+                        <li>Welche Rolle haben bestimmte Pflanzenarten in Ökosystemen?</li>
+                        <li>Wie wirken sich invasive Pflanzenarten auf Ökosysteme aus?</li>
+                        <li>Welche Pflanzenarten sind besonders für Biodiversität wichtig?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six columns">
+                <div><b>Ökotourismus</b></div>
+                <div>
+                    <ul>
+                        <li>Wie beeinflusst der Tourismus die Erhaltung von Pflanzen in geschützten Gebieten?</li>
+                        <li>Gibt es erfolgreiche Projekte, die Tourismus & Pflanzenschutz verbinden?</li>
+                        <li>Welche Rolle spielen botanische Gärten & Naturschutzgebiete im Ökotourismus?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="six columns">
+                <div><b>Pflanzen & Kultur</b></div>
+                <div>
+                    <ul>
+                        <li>Welche Pflanzenarten haben in verschiedenen Kulturen traditionelle Bedeutung?</li>
+                        <li>Wie werden Pflanzen in der traditionellen Medizin verwendet?</li>
+                        <li>Welche Rolle spielen Pflanzen in der Kultur & Geschichte in bestimmten Regionen?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six columns">
+                <div><b>Pflanzen & urbanes Umfeld</b></div>
+                <div>
+                    <ul>
+                        <li>Wie beeinflusst das urbane Umfeld die Vielfalt der Pflanzenarten in Städten?</li>
+                        <li>Welche Strategien werden eingesetzt um Grünflächen zu fördern?</li>
+                        <li>Wie tragen Pflanzen zur Luftqualität in Städten bei?</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+        <h5>Personas</h5>
+
+        <div class="row">
+            <div class="six columns">
+                <div><b>Person 1</b></div>
+                Name: Jonas Müller <br>
+                Alter: 32 Jahre <br> 
+                Beruf: Sozialarbeiter <br> 
+                Interessen: Lokaler Umweltschutz, Gemeinschaftsprojekte, Radfahren <br>
+                Ziele: Aktiv zur Verbesserung der städtischen Umwelt beitragen, Nachhaltigkeitsinitiativen unterstützen<br>
+                Bedürfnisse: Informationen über lokale Umweltprojekte, Möglichkeiten zur aktiven Teilnahme an Umweltschutzaktionen<br>
+                Techniknutzung: Aktiv in sozialen Netzwerken, liest Blogs und Artikel zum Thema Umwelt
+            </div>
+
+            <div class="six columns">
+            <div><b>Person 2 </b></div>
+            Name: Sarah Becker<br> 
+            Alter: 38 Jahre <br> 
+            Beruf: Teilzeit-Buchhalterin<br> 
+            Interessen: Familiengärtnerei, Bildung ihrer Kinder, lokale Gemeinschaftsaktivitäten<br>
+            Ziele: Ihren Kindern Werte der Nachhaltigkeit und Naturverbundenheit vermitteln<br>
+            Bedürfnisse: Einfache und verständliche Informationen über lokale Flora und Umweltschutz, Aktivitäten für Familien<br>
+            Techniknutzung: Nutzt das Internet hauptsächlich für pädagogische Ressourcen und lokale Nachrichten
+            </div>
+        </div>
+
+        <h5>Moodboard: Visualisierungen</h5>
+        <div class="row">
+            <div class="twelve columns">
+                <img src="./assets/Moodboard_Visualisierungen.png" />
+            </div>
+        </div>
+
+        
+        <h5>Moodboard: Farben</h5>
+        <div class="row">
+            <div class="twelve columns">
+                <img src="./assets/Moodboard_Farbe.png" />
+            </div>
+        </div>
+
+        <h5>Ergebnis</h5>
+        <div class="row">
+            <div class="eight columns">
+                <b>Vertiefungsberich: Natur-Begeisterung</b><br>
+                <ul>
+                    <li>Darstellung der Artenvielfalt von Pflazen in Europa/Deutschland</li>
+                    <li>Darstellung der Beteiligung von Menschen an Natur-Sichtungen</li>
+                    <li>Relevante Fragenkatalog: Pflanzenarten, Pflanzen Sichtungen, Ökotourismus </li>
+                </ul>
+            </div>
+            <div class="four columns">
+                <b>Ausgewählte Datensätze:</b><br>
+                <ul>
+                    <li>GADM: für GeoJSON</li>
+                    <li>Pl@ntNet: Hauptinformationen</li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <a class="anchor" id="section2"></a>
+        <h4>Visualisierungsmethodik</h4>
+        <div class="row">
+           
+        </div>
+        <hr />
+
+        <a class="anchor" id="section3"></a>
+        <h4>Storyboards</h4>
+        <div class="row">
+           
+        </div>
+        <hr />
+
+        <a class="anchor" id="section4"></a>
+        <h4>Umsetzung</h4>
+        <div class="row">
+           
+        </div>
+
+
+    <hr />
+    <footer class="container">
+        Interactive Visual Design, <a href="https://www.uni-ulm.de" target="_new">Universit&auml;t Ulm</a>,
+        Sommersemester 2023<br> Max Zgonnik, Laurin Bischof
+    </footer>
+
+</body>
+
+</html>
