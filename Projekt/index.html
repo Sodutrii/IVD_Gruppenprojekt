@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Biodiversität in der EU</title>
+  <meta name="description" content="">
+  <meta name="author" content="Max Zgonnik, Laurin Bischof">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <!--Data-->
+  <script defer src="./data/impacts.js" type="text/javascript" charset="utf-8"></script> 
+  <!--Scripts-->
+  <script defer src="./libs/d3/d3.v7.min.js" type="text/javascript" charset="utf-8"></script>
+  <script defer src="./scripts/impactDiagramm.js" type="text/javascript" charset="utf-8"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!--<link rel="icon" type="image/png" href="images/favicon.png">-->
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <hr>
+    <h3>Einflüsse auf Naturschutzgebiete</h3>
+    <div class="row">
+      <div class="seven columns" id="impactDiagramm"></div>
+      <div class="five columns" style="background-color: hsl(0, 0%, 95%); padding:2%;">
+        <h5 id="titel">Einflüsse auf Naturschutzgebiete</h5>
+        <p>
+        <b id="tooltip"></b>
+        <div id="description">
+        Obwohl Naturschutzgebiete dazu diennen um die Natur und Umwelt zu sichern und von menschlichen Einflüssen zu verschonen, sind trotzdem viele Naturschutzgebiete negativ Einflüssen ausgesetzt.
+      </div>
+        </p>
+      </div>
+    </div>
+      <hr>
+      <div class="row">
+        <div class="six columns">
+        EU weit befinden sich
+        <h5 style="display: inline;"><b>34,8%</b></h5> 
+        der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung veratnwortlich.
+        
+        </div>
+        <div class="six columns">
+          In Deutschland gelangt mehr als <h5 style="display: inline;"><b>50%</b></h5> des überschüssigen Stickstoffs über die Landwirtschaft in die Umwelt.
+          </div>
+      </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
