@@ -139,18 +139,3 @@ outerGraph.selectAll('path').on('click', function (d, i) {
        .innerRadius(circleRadius[1])         
        .outerRadius(circleRadius[2] * 0.8));
 });
-//outerGraph: on clicking something else in the Graph
-outerGraph.selectAll('path').on('mouseout', function (d, i) {
-
-  if(d.relatedTarget.parentElement.id != 'outerGraph') return; //change only when a part of the outerGraph is selected
-  outerGraph.selectAll('path').transition()
-  .duration('1000')
-  .attr('opacity', 1)
-  .attr('d', d3.arc()
-  .innerRadius(circleRadius[1])
-  .outerRadius(circleRadius[2])
-)
-});
-
-
-
