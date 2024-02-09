@@ -11,7 +11,7 @@ var circleRadius = [size * 0.25, size * 0.35, size * 0.5];
 //creating svg image for diagramm
 visualisierung
   .attr("width", size)
-  .attr("height", size);
+  .attr("height", size * 1.2);
 
 //creating groups for different graph parts
 const outerGraph = visualisierung.append('g')
@@ -21,6 +21,12 @@ const outerGraph = visualisierung.append('g')
 const innerGraph = visualisierung.append('g')
   .attr('id', 'innerGraph')
   .attr("transform", `translate(${size / 2},${size / 2})`);
+
+const legende = visualisierung.append('g')
+  .attr('id', 'legende')
+  .attr("transform", `translate(${10},${size * 1.05})`)
+
+
 
 //data
 var outerData = impactData;
@@ -47,23 +53,24 @@ var innerColor = d3.scaleOrdinal()
 var innerlabelScale = d3.scaleOrdinal()
   .domain(innerData)
   .range(["Niedrig", "Mittel", "Hoch"]);
+
 var outerColor = d3.scaleOrdinal()
   .domain(outerData)
   .range(["#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54","#ffa600"]);
 
 
 //on selecting the outer ring
-function onSelectingBigGraphSegment(i){
+function onSelectingBigGraphSegment(data){
   //updating the tooltip
-  titel.textContent = String(i.data.impactType);
-  description.textContent = String(i.data.description);
-  let percentage = Math.round(i.data.total / totalSum * 10000)/ 100;
-  tooltip.textContent = String("Prozent: " + percentage + "% Total: " + (i.data.total));
+  titel.textContent = String(data.impactType);
+  description.textContent = String(data.description);
+  let percentage = Math.round(data.total / totalSum * 10000)/ 100;
+  tooltip.textContent = String("Prozent: " + percentage + "% Total: " + (data.total));
 
   //updating data
-  selectedOuterTotal = Number(i.data.total);
+  selectedOuterTotal = Number(data.total);
   //creating second layer of visual
-  innerData = [i.data.low, i.data.middle, i.data.high];
+  innerData = [data.low, data.middle, data.high];
   innerArcs = innerPie(innerData);
 
   var arcGen = d3.arc()
@@ -97,13 +104,61 @@ function onSelectingBigGraphSegment(i){
   .data(innerArcs)
   .join('text')
   .text((d) => innerlabelScale(d) + " " + Math.round(d.value / selectedOuterTotal * 100) + "%")
-  .attr("transform", function(d) { console.log(d); return `translate(${arcGen.centroid(d)})`})
+  .attr("transform", function(d) {return `translate(${arcGen.centroid(d)})`})
   .style("text-anchor", "middle")
   .style("font-size", 12)
 }
+//handles the selection Animation vor outerGraph Segments
+function outerGraphSelectAnimation(data){
+  outerGraph.selectAll('path').each(function(d,i){
+    if(data != this.__data__.data) return; //filters to play animation only on clicked Segment
 
+    //expands selected Segement and turns fully opaque
+    d3.select(this).transition()
+    .duration('1000')
+    .attr('opacity', 1)
+    .attr('d', d3.arc()
+    .innerRadius(circleRadius[1])         
+    .outerRadius(circleRadius[2]));
 
+  //shrinks & reduces opacity for all other Segments
+  outerGraph.selectAll('path').filter((d,i) => this.__data__ != d).transition()
+    .duration('1000')
+    .attr('opacity', 0.4)
+    .attr('d', d3.arc()
+    .innerRadius(circleRadius[1])         
+    .outerRadius(circleRadius[2] * 0.8));
+    })
 
+}
+//creating the legende
+const legendUnits = legende.selectAll('g')
+  .data(outerData)
+  .enter()
+  .append('g')
+  .attr('transform', (d,i) => `translate(${(i % 2) * 200},${legendHelper(i) * 25})`);
+
+//helps with calculating the index for alignment
+function legendHelper(i){
+  if(i % 2 == 0) return (i / 2);
+  else return ((i - 1) / 2);
+}
+//Legende: adds the color square to the legende
+legendUnits.data(outerData)
+  .append('rect')
+  .attr('width', 15)
+  .attr('height', 15)
+  .attr('fill', (d) => outerColor(d));
+//Legende: adds the text to the legende
+legendUnits.data(outerData)
+  .append('text')
+  .attr('x', 20)
+  .attr('y', 12.5)
+  .text( (d) => d.impactType)
+//Legende: add onClick event (same effect as clicking on outerGraph segement)
+.on('click', function (d, i) {
+  onSelectingBigGraphSegment(i)
+outerGraphSelectAnimation(i)})
 
 //creating the outerGraph
 outerGraph.selectAll('path')
@@ -125,17 +180,6 @@ outerGraph.selectAll('path').transition()
 
 //outerGraph: clicking on a Element
 outerGraph.selectAll('path').on('click', function (d, i) {
-  onSelectingBigGraphSegment(i);
-  d3.select(this).transition()
-         .duration('1000')
-         .attr('opacity', 1)
-         .attr('d', d3.arc()
-         .innerRadius(circleRadius[1])         
-         .outerRadius(circleRadius[2]));
-  outerGraph.selectAll('path').filter((d,i) => this.__data__ != d).transition()
-       .duration('1000')
-       .attr('opacity', 0.4)
-       .attr('d', d3.arc()
-       .innerRadius(circleRadius[1])         
-       .outerRadius(circleRadius[2] * 0.8));
+  onSelectingBigGraphSegment(i.data);
+  outerGraphSelectAnimation(i.data);
 });

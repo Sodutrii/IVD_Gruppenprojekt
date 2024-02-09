@@ -24,7 +24,7 @@ let impactData = [
         "description" : "Unter Versauerung versteht man den anstieg des ph-Wertes in Gewässern. Die Versauerung wird durch die steigende Menge an Kohlenstoffdioxid verursacht, die vom Wasser absorbiert wird und in Kohlensäure umgewandelt wird. Durch den erhöhten ph-Wert wird die Biomineralisation von vielen Tierarten (zB: Meeresschnecken) verhindert, wodurch es zu Engpässen in der Nahrungskette & Artenausterben kommt. Zudem wird durch den gestiegenden ph-Wert das Wachstum & die Fortpflanzungsfähigkeit von Fischen beeinträchtigt."
     },
     {
-        "impactType" : "Toxische anorganische Chemikalien",
+        "impactType" : "Anorganische Chemikalien",
         "total" : 32,
         "low" : 21,
         "middle" : 8,
@@ -32,7 +32,7 @@ let impactData = [
         "description" : "toxische anorganische Chemikalien reichern sie sich in Gewässern & Böden an. Dadurch können diese Chemikalein schnell in die Nahrungskette kommen und in Tieren Krankheiten, Krebs, Hormonstörungen, DNA-Schäden und Geburtsfehler verursachen. Durch die Nahrungskette gelangen diese Chemikalien auch in unsere Nahrung."
     },
     {
-        "impactType" : "Toxische organische Chemikalien",
+        "impactType" : "Organische Chemikalien",
         "total" : 51,
         "low" : 17,
         "middle" : 31,
