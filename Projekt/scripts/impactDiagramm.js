@@ -1,3 +1,15 @@
+{
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("do the thing");
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, {accordion: true});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, {preventScrolling : false});
+});
 const diagramm = document.getElementById('impactDiagramm');
 const margin = { top: 50, left: 50, right: 50, bottom: 50 };
 
@@ -56,7 +68,7 @@ var innerlabelScale = d3.scaleOrdinal()
 
 var outerColor = d3.scaleOrdinal()
   .domain(outerData)
-  .range(["#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54","#ffa600"]);
+  .range(["#2b7cff", "#c268e8", "#ff57b9", "#ff6582", "#ff8d4f","#ffb82b"]);
 
 
 //on selecting the outer ring
@@ -154,6 +166,7 @@ legendUnits.data(outerData)
   .append('text')
   .attr('x', 20)
   .attr('y', 12.5)
+  .attr('fill', 'white')
   .text( (d) => d.impactType)
 //Legende: add onClick event (same effect as clicking on outerGraph segement)
 .on('click', function (d, i) {
@@ -183,3 +196,5 @@ outerGraph.selectAll('path').on('click', function (d, i) {
   onSelectingBigGraphSegment(i.data);
   outerGraphSelectAnimation(i.data);
 });
+
+}
