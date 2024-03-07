@@ -32,6 +32,28 @@ const habitats = visualisierung.append('g')
 const maxSize = 7186094;
 const minSize = 1;
 
+var selectedYear = 'all';
+var selectedCountry = 'all';
+var selectedRegion = 'all';
+var onlyImpacted = false;
+
+//returns true or false depending on the selection of filters to determin if habitat should be included
+  function filterHabitats(habitat){
+    //check year
+
+    if(selectedYear != 'all'){
+      year = habitat.DATE.split(' ')[0].slice(-4);
+      console.log(year);
+      if(selectedYear != year) return false;
+    }
+    //check country
+    if(selectedCountry != 'all') if(selectedCountry != habitat.SITECODE.slice(2)) return false;
+    //check biographicregion
+
+    //check impact
+    return true;
+  }
+
 //scales
 var sizeScale = d3.scaleLinear()
     .domain([minSize,maxSize])
@@ -79,19 +101,28 @@ d3.json('./data/europe.geojson').then(mapData =>{
 })
 
 //drawing Habitats as circles
+var habitatSelection;
 d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
-  habitats.selectAll('circle')
-    .data(Data)
-    .join('circle')
-    .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
-    .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
-    .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
-    .attr('fill',element => pollutionColorScale(element.POLLUTION))
-    .attr('opacity', 0.5)
+  habitatSelection = habitats.selectAll('circle')
+    .data(Data.filter(filterHabitats))
+    .join(
+      function(enter){
+        return enter
+        .append('circle')
+        .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
+        .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
+        .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+        .attr('fill',element => pollutionColorScale(element.POLLUTION))
+        .attr('opacity', 0.5);
+      },
+      function(update){ return update; },
+      function(exit){ return exit.remove(); }
+    )
+
+
 //HABITATS: onclick event for habitats
-    .on('click', function(d, i){
+habitatSelection.on('click', function(d, i){
       //update ui
-      console.log(this.__data__);
       updateTooltip(this.__data__);
     });
 })
@@ -146,7 +177,7 @@ function updateTooltip(data){
   document.getElementById('Habitat_Name').textContent = data.SITENAME;
   document.getElementById('Habitat_Country').textContent = data.COUNTRY.toUpperCase();
   document.getElementById('Habitat_Size').textContent = data.AREAHA + "Ha";
-  document.getElementById('Habitat_Date').textContent = ((data.DATE == null)? data.DATE : "--");
+  document.getElementById('Habitat_Date').textContent = data.DATE.split(' ')[0].slice(-4);
   document.getElementById('Habitat_Region').textContent = data.REGION;
   document.getElementById('Habitat_Class').textContent = data.HABITATCLASS;
 
@@ -154,10 +185,40 @@ function updateTooltip(data){
 }
 
 function drawHabitats(){
-  d3.csv('./data/naturschutzGebiete.csv').then(Data =>{
-    habitats.selectAll('circle').transition()
-      .attr('r',element =>Math.max( sizeScale(Number(element.AREAHA.replace(',','.')))/ scalingFactor, 0.4))
+  d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
+    habitatSelection = habitats.selectAll('circle')
+      .data(Data.filter(filterHabitats))
+      .join(
+        function(enter){
+          return enter
+          .append('circle')
+          .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
+          .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
+          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+          .attr('fill',element => pollutionColorScale(element.POLLUTION))
+          .attr('opacity', 0.5);
+        },
+        function(update){ return update; },
+        function(exit){ 
+          return exit.
+          transition()
+          .duration(1000)
+          .attr('r', 0)
+          .remove(); 
+        }
+      )
+})
+habitatSelection.on('click', function(d, i){
+  //update ui
+  updateTooltip(this.__data__);
+});
+}
+function filterYear(year){
+  selectedYear = year;
+  drawHabitats();
+}
 
-  })
+function filterCountry(country){
+  console.log(country);
 }
 

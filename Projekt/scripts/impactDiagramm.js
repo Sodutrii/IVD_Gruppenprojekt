@@ -1,15 +1,4 @@
 {
-
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("do the thing");
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, {accordion: true});
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems, {preventScrolling : false});
-});
 const diagramm = document.getElementById('impactDiagramm');
 const margin = { top: 50, left: 50, right: 50, bottom: 50 };
 
