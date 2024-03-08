@@ -32,27 +32,33 @@ const habitats = visualisierung.append('g')
 const maxSize = 7186094;
 const minSize = 1;
 
+//variables for filtering habitatMap
 var selectedYear = 'all';
 var selectedCountry = 'all';
 var selectedRegion = 'all';
 var onlyImpacted = false;
 
 //returns true or false depending on the selection of filters to determin if habitat should be included
-  function filterHabitats(habitat){
-    //check year
+function filterHabitats(habitat){
 
+    //check year
     if(selectedYear != 'all'){
       year = habitat.DATE.split(' ')[0].slice(-4);
-      console.log(year);
       if(selectedYear != year) return false;
     }
+
     //check country
-    if(selectedCountry != 'all') if(selectedCountry != habitat.SITECODE.slice(2)) return false;
+    if(selectedCountry != 'all'){
+      country = habitat.SITECODE.slice(0,2);
+      console.log(country);
+      if(selectedCountry != country) return false;
+    } 
     //check biographicregion
 
     //check impact
     return true;
-  }
+}
+
 
 //scales
 var sizeScale = d3.scaleLinear()
@@ -62,6 +68,8 @@ var sizeScale = d3.scaleLinear()
 var pollutionColorScale = d3.scaleOrdinal()
     .domain(['A','N','P','T','O','X',''])
     .range(["#2b7cff", "#c268e8", "#ff57b9", "#ff6582", "#ff8d4f","#ffb82b", "#A9AF7E"]);
+
+
 //handle zoom of the map
 var scalingFactor = 1;
 const zoom = d3.zoom()
@@ -113,7 +121,7 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
         .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
         .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
         .attr('fill',element => pollutionColorScale(element.POLLUTION))
-        .attr('opacity', 0.5);
+        .attr('opacity', 1);
       },
       function(update){ return update; },
       function(exit){ return exit.remove(); }
@@ -121,11 +129,7 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
 
 
 //HABITATS: onclick event for habitats
-habitatSelection.on('click', function(d, i){
-      //update ui
-      updateTooltip(this.__data__);
-    });
-})
+habitatSelection.on('click', function(d, i){updateTooltip(this.__data__);});})
 
 //Update Impact-Table
 function updateImpactTable(data){
@@ -142,8 +146,8 @@ function updateImpactTable(data){
     row = table.insertRow(-1);
     species = (element.split(':')[0] != undefined ? element.split(':')[0] : '-');
     row.insertCell(-1).innerHTML = species;
+    
     //handle impactType
-
     typeSymbol = document.createElement('span');
     typeSymbol.style.color = "green";
     console.log(typeSymbol.style.color);
@@ -196,9 +200,16 @@ function drawHabitats(){
           .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
           .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
           .attr('fill',element => pollutionColorScale(element.POLLUTION))
-          .attr('opacity', 0.5);
+          .attr('opacity', 1);
         },
-        function(update){ return update; },
+        function(update){ 
+          return update
+          .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
+          .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
+          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+          .attr('fill',element => pollutionColorScale(element.POLLUTION))
+          .attr('opacity', 1);
+         },
         function(exit){ 
           return exit.
           transition()
@@ -213,12 +224,17 @@ habitatSelection.on('click', function(d, i){
   updateTooltip(this.__data__);
 });
 }
+//functions to set filters for the map
 function filterYear(year){
   selectedYear = year;
   drawHabitats();
 }
 
 function filterCountry(country){
-  console.log(country);
+  selectedCountry = country;
+  drawHabitats();
+}
+function filterBioRegion(region){
+
 }
 

@@ -45,6 +45,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="divider"></div>
+
+    <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
     <div class="row">
       <div class="col s3">
         <div class="input-field">
@@ -94,18 +96,41 @@
       </div>
       <div class="col s3">
         <div class="input-field">
-          <select>
-            <option value="">Alle Länder</option>
-            <option value="1">Deutschland</option>
-            <option value="2">Frankreich</option>
-            <option value="3">Belgien</option>
+          <select onchange="filterCountry(this.value)">
+            <option value="all">Alle Länder</option>
+            <option value="BE">Belgien</option>
+            <option value="BG">Bulgarien</option>
+            <option value="DK">Dänemark</option>
+            <option value="DE">Deutschland</option>
+            <option value="EE">Estland</option>
+            <option value="FI">Finnland</option>
+            <option value="FR">Frankreich</option>
+            <option value="GR">Griechenland</option>
+            <option value="IE">Irland</option>
+            <option value="IT">Italien</option>
+            <option value="HR">Kroatien</option>
+            <option value="LV">Lettland</option>
+            <option value="LT">Litauen</option>
+            <option value="LU">Luxemburg</option>
+            <option value="MT">Malta</option>
+            <option value="NL">Niederlande</option>
+            <option value="AT">Österreich</option>
+            <option value="PL">Polen</option>
+            <option value="PT">Portugal</option>
+            <option value="RO">Rumänien</option>
+            <option value="SE">Schweden</option>
+            <option value="SK">Slowakei</option>
+            <option value="SI">Slowenien</option>
+            <option value="ES">Spanien</option>
+            <option value="CZ">Tschechien</option>
+            <option value="HU">Ungarn</option>
+            <option value="CY">Zypern</option>
           </select>
           <label>Land</label>
         </div>
       </div>
     </div>
     
-    <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
     <div class="col s12" id="naturschutzDiagramm"></div>
 
     <div class="modal" id="habitatModal">
