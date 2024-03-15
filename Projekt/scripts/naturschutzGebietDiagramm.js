@@ -11,7 +11,7 @@ const size = diagramm.clientWidth;
 //creating svg image for diagramm
 visualisierung
   .attr("width", size)
-  .attr("height", size);
+  .attr("height", size * 0.6);
 
 visualisierung.append('rect')
   .attr('width', size)
@@ -50,11 +50,14 @@ function filterHabitats(habitat){
     //check country
     if(selectedCountry != 'all'){
       country = habitat.SITECODE.slice(0,2);
-      console.log(country);
+      //console.log(country);
       if(selectedCountry != country) return false;
     } 
     //check biographicregion
-
+    if(selectedRegion != 'all'){
+      region = habitat.REGION;
+      if(selectedRegion != region) return false;
+    }
     //check impact
     return true;
 }
@@ -63,7 +66,7 @@ function filterHabitats(habitat){
 //scales
 var sizeScale = d3.scaleLinear()
     .domain([minSize,maxSize])
-    .range([3,8]);
+    .range([1,8]);
 
 var pollutionColorScale = d3.scaleOrdinal()
     .domain(['A','N','P','T','O','X',''])
@@ -232,9 +235,12 @@ function filterYear(year){
 
 function filterCountry(country){
   selectedCountry = country;
+  console.log(selectedCountry);
   drawHabitats();
 }
 function filterBioRegion(region){
-
+  selectedRegion = region;
+  console.log("selected" + selectedRegion);
+  drawHabitats();
 }
 
