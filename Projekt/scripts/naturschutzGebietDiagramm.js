@@ -40,7 +40,7 @@ var onlyImpacted = false;
 
 //returns true or false depending on the selection of filters to determin if habitat should be included
 function filterHabitats(habitat){
-
+    
     //check year
     if(selectedYear != 'all'){
       year = habitat.DATE.split(' ')[0].slice(-4);
@@ -59,6 +59,11 @@ function filterHabitats(habitat){
       if(selectedRegion != region) return false;
     }
     //check impact
+    if(onlyImpacted){
+      pollution = habitat.IMPACT;
+      console.log(pollution);
+      if(pollution == undefined) return false;
+    };
     return true;
 }
 
@@ -134,6 +139,42 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
 //HABITATS: onclick event for habitats
 habitatSelection.on('click', function(d, i){updateTooltip(this.__data__);});})
 
+//Legend vor Habitats
+const legendData = ['','']
+const legende = visualisierung.append('g')
+  .attr('id', 'legende')
+  .attr("transform", `translate(${100},${10})`)
+  .attr('width', 200)
+  .attr('height', 400)
+  .attr('fill', 'grey')
+
+//creating the legende
+const legendUnits = legende.selectAll('g')
+  .data()//TODO: creat data
+  .enter()
+  .append('g')
+  .attr('transform', (d,i) => `translate(${200},${i * 25})`);
+
+//Legende: adds the color square to the legende
+legendUnits.data(outerData)
+  .append('rect')
+  .attr('width', 15)
+  .attr('height', 15)
+  .attr('fill', (d) => outerColor(d));
+//Legende: adds the text to the legende
+legendUnits.data(outerData)
+  .append('text')
+  .attr('x', 20)
+  .attr('y', 12.5)
+  .attr('fill', 'white')
+  .text( (d) => d.impactType)
+//Legende: add onClick event (same effect as clicking on outerGraph segement)
+.on('click', function (d, i) {
+  onSelectingBigGraphSegment(i)
+outerGraphSelectAnimation(i)})
+
+
+
 //Update Impact-Table
 function updateImpactTable(data){
   var table = document.getElementById('habitatImpactTable');
@@ -176,10 +217,60 @@ function updateImpactTable(data){
   });
 
 }
+//updates the table for species
+function updateSpeciesTable(data){
+
+  var table = document.getElementById('habitatSpeciesTable');
+  //clear old entries
+  while (table.firstChild) {
+    table.firstChild.remove();
+}
+  var species = data.SPECIES.split(',');
+  //creat one row for each species entry
+  species.forEach(element => {
+
+    //add species name
+    row = table.insertRow(-1);
+    species = (element.split(':')[0] != undefined ? element.split(':')[0] : '-');
+    row.insertCell(-1).innerHTML = species;
+    
+    //handle impactType
+    typeSymbol = document.createElement('span');
+    typeSymbol.style.color = "green";
+    console.log(typeSymbol.style.color);
+    typeSymbol.classList.add("material-icons-round");
+
+    type = 'remove';
+    populationTrend = element.split(':')[1];
+    if(populationTrend == 'c' || populationTrend == 'c'){
+      //going up
+      type = 'trending_up';
+      typeSymbol.style.color = "green";
+    }
+    else if(populationTrend == 'p'){
+      //staying
+      type = 'trending_flat';
+      typeSymbol.style.color = 'red';
+    }
+    else if(populationTrend == 'w'){
+      //going down
+      type = 'trending_down';
+    }
+    else{
+      //unkonwn
+    }
+
+    typeSymbol = document.createElement('span');
+    typeSymbol.classList.add("material-icons-round");
+    typeSymbol.innerHTML = type;
+
+    row.insertCell(-1).appendChild(typeSymbol);})
+}
 
 //Updates the Tooltip to the side of the map
 function updateTooltip(data){
-  updateImpactTable(data)
+  updateImpactTable(data);
+  updateSpeciesTable(data);
   //tooltip to the side:
   document.getElementById('Habitat_Name').textContent = data.SITENAME;
   document.getElementById('Habitat_Country').textContent = data.COUNTRY.toUpperCase();
@@ -187,7 +278,7 @@ function updateTooltip(data){
   document.getElementById('Habitat_Date').textContent = data.DATE.split(' ')[0].slice(-4);
   document.getElementById('Habitat_Region').textContent = data.REGION;
   document.getElementById('Habitat_Class').textContent = data.HABITATCLASS;
-
+  document.getElementById('Habitat_Pollution').textContent = data.IMPACT_TYPE;
   M.Modal.getInstance(document.getElementById('habitatModal')).open();
 }
 
@@ -241,6 +332,17 @@ function filterCountry(country){
 function filterBioRegion(region){
   selectedRegion = region;
   console.log("selected" + selectedRegion);
+  drawHabitats();
+}
+
+function filterOnlyPollution(){
+  if(onlyImpacted) {
+    onlyImpacted = false;
+  }
+  else{
+    onlyImpacted = true;
+  }
+  console.log(onlyImpacted);
   drawHabitats();
 }
 

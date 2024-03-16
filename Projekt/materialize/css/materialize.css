@@ -2382,6 +2382,11 @@ textarea {
   /* 1 */
   margin: 0;
   /* 2 */
+  padding: 5%;
+  background-color: none;
+  border-width: 5px;
+  border-radius: 8px;
+  border-color: #7D8F69;
 }
 
 /**
@@ -5758,8 +5763,8 @@ body.keyboard-focused .dropdown-content li:focus {
   right: 0;
   background-color: #5E705D;
   padding: 0;
-  max-height: 80%;
-  width: 90%;
+  max-height: 85%;
+  width: 70%;
   margin: auto;
   overflow-y: auto;
   border-radius: 4px;
@@ -5786,11 +5791,13 @@ body.keyboard-focused .dropdown-content li:focus {
 
 .modal .modal-close {
   cursor: pointer;
+  color: white;
 }
 
 .modal .modal-footer {
   border-radius: 0 0 2px 2px;
   background-color: #5E705D;
+  color: white;
   padding: 4px 6px;
   height: 56px;
   width: 100%;
@@ -6097,7 +6104,7 @@ select:focus {
 
 button:focus {
   outline: none;
-  background-color: #2ab7a9;
+  background-color: #7D8F69;
 }
 
 label {

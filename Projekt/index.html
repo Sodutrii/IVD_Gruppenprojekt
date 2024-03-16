@@ -151,7 +151,7 @@
         </div>
       </div>
       <div class="col s3">
-        <button>Mit Verschmutzung</button>
+        <button onclick="filterOnlyPollution()">Mit Verschmutzung</button>
       </div>
     </div>
     
@@ -160,12 +160,12 @@
     <div class="modal" id="habitatModal">
       <div class="modal-content">
         <div class="row">
-          <div class="col s10">
+          <div class="col s12">
             <h4 id="Habitat_Name" style="background-color:#7D8F69;padding: 0.5em; border-radius: 4px;">Habitats Name</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col s6">
+          <div class="col s7">
             <ul class="collapsible">
               <li>
                 <div class="collapsible-header">Einflüsse</div>
@@ -179,19 +179,20 @@
                 <div class="collapsible-header">geschützte Arten</div>
                 <div class="collapsible-body">
                   <table class="responsive-table">
-                    <tbody></tbody>
+                    <tbody id="habitatSpeciesTable"></tbody>
                   </table>
                 </div>
               </li>
             </ul>
           </div>
-          <div class="col s4">
+          <div class="col s5">
             <p style="background-color: #7D8F69; border-radius: 4px; padding: 1.5em; margin: 0;">
               <b>Land: </b><span id="Habitat_Country">AT</span><br>
               <b>Größe: </b><span id="Habitat_Size"> 40,94Ha</span> <br>
               <b>Gründungsjahr: </b><span id="Habitat_Date"> 01.06.1998</span> <br>
               <b>Biografischeregion: </b><span id="Habitat_Region">Broad-leaved deciduous woodland</span><br>
               <b>Habitatsklasse: </b><span id="Habitat_Class"></span><br>
+              <b>Verschmutzung:</b><span id="Habitat_Pollution"></span>
             </p>
           </div>
         </div>
