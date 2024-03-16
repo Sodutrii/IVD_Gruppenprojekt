@@ -60,9 +60,10 @@ function filterHabitats(habitat){
     }
     //check impact
     if(onlyImpacted){
-      pollution = habitat.IMPACT;
+      pollution = habitat.POLLUTION;
       console.log(pollution);
-      if(pollution == undefined) return false;
+      if(pollution == 'P' || pollution == 'N' || pollution == 'T' || pollution == 'O' || pollution == 'X' || pollution == 'A') return true;
+      else return false;
     };
     return true;
 }
@@ -269,6 +270,7 @@ function updateSpeciesTable(data){
 
 //Updates the Tooltip to the side of the map
 function updateTooltip(data){
+  //console.log(data);
   updateImpactTable(data);
   updateSpeciesTable(data);
   //tooltip to the side:
