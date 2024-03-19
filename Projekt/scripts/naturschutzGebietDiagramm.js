@@ -3,19 +3,19 @@ const diagramm = document.getElementById('naturschutzDiagramm');
 const margin = { top: 50, left: 50, right: 50, bottom: 50 };
 
 const visualisierung = d3.select(diagramm).append('svg');
-
+visualisierung.attr('id', 'HabitatMap');
 
 //different values for diagramm sizes
-const size = diagramm.clientWidth;
+const svgSize = {width: diagramm.clientWidth, height: diagramm.clientWidth * 0.6};
 
 //creating svg image for diagramm
 visualisierung
-  .attr("width", size)
-  .attr("height", size * 0.6);
+  .attr("width", svgSize.width)
+  .attr("height", svgSize.height);
 
 visualisierung.append('rect')
-  .attr('width', size)
-  .attr('height', size)
+  .attr('width', svgSize.width)
+  .attr('height', svgSize.height)
   .attr('fill', 'black')
   .attr('opacity', 0.1)
 
@@ -83,11 +83,12 @@ var pollutionColorScale = d3.scaleOrdinal()
 var scalingFactor = 1;
 const zoom = d3.zoom()
     .scaleExtent([.8, 50])
-    .translateExtent([[-diagramm.clientWidth, -diagramm.clientHeight],[1.5 * diagramm.clientWidth, 1.5 * diagramm.clientHeight]])
+    .translateExtent([[-0.25 * diagramm.clientWidth, -0.25 * diagramm.clientHeight],[1.25 * diagramm.clientWidth, 1.25 * diagramm.clientHeight]])
     .on('zoom', zoomed);
     
 
-function zoomed({ transform}){
+function zoomed({transform}){
+  console.log(transform);
     countries.attr('transform', transform);
     habitats.attr('transform', transform);
     drawHabitats();
@@ -140,39 +141,6 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
 //HABITATS: onclick event for habitats
 habitatSelection.on('click', function(d, i){updateTooltip(this.__data__);});})
 
-//Legend vor Habitats
-const legendData = ['','']
-const legende = visualisierung.append('g')
-  .attr('id', 'legende')
-  .attr("transform", `translate(${100},${10})`)
-  .attr('width', 200)
-  .attr('height', 400)
-  .attr('fill', 'grey')
-
-//creating the legende
-const legendUnits = legende.selectAll('g')
-  .data()//TODO: creat data
-  .enter()
-  .append('g')
-  .attr('transform', (d,i) => `translate(${200},${i * 25})`);
-
-//Legende: adds the color square to the legende
-legendUnits.data(outerData)
-  .append('rect')
-  .attr('width', 15)
-  .attr('height', 15)
-  .attr('fill', (d) => outerColor(d));
-//Legende: adds the text to the legende
-legendUnits.data(outerData)
-  .append('text')
-  .attr('x', 20)
-  .attr('y', 12.5)
-  .attr('fill', 'white')
-  .text( (d) => d.impactType)
-//Legende: add onClick event (same effect as clicking on outerGraph segement)
-.on('click', function (d, i) {
-  onSelectingBigGraphSegment(i)
-outerGraphSelectAnimation(i)})
 
 
 
