@@ -1,3 +1,58 @@
+/*----custom additions----*/
+
+.legendButton{
+  background-color: #7D8F69;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 0;
+  padding: 5px;
+  aspect-ratio: 1/1;
+  box-shadow: 0px 0px 2px #4d4d4d;
+  overflow: hidden;
+}
+
+.zoomInButton{
+  background-color: #7D8F69;
+  border-style: solid;
+  border-radius: 4px 4px 0 0;
+  border-width: 0;
+  padding: 5px;
+  aspect-ratio: 1/1;
+  width: 2.5em;
+  box-shadow: 0px 0px 2px #4d4d4d;
+}
+
+.zoomOutButton{
+  background-color: #7D8F69;
+  border-style: solid;
+  border-radius: 0 0 4px 4px;
+  border-width: 0;
+  padding: 5px;
+  aspect-ratio: 1/1;
+  width: 2.5em;
+  box-shadow: 0px 0px 2px #4d4d4d;
+}
+/*custom track*/
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #546554; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #A9AF7E; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #92966c; 
+}
+
 /*!
  * Materialize v1.0.0 (http://materializecss.com)
  * Copyright 2014-2017 Materialize
@@ -2383,6 +2438,11 @@ textarea {
   /* 1 */
   margin: 0;
   /* 2 */
+  padding: 5%;
+  background-color: none;
+  border-width: 5px;
+  border-radius: 4px;
+  border-color: #7D8F69;
 }
 
 /**
@@ -2392,7 +2452,7 @@ textarea {
 button,
 input {
   /* 1 */
-  overflow: scroll;
+  overflow: auto;
 }
 
 /**
@@ -2606,6 +2666,7 @@ ul:not(.browser-default) {
 
 ul:not(.browser-default) > li {
   list-style-type: none;
+  background-color: #7D8F69;
 }
 
 a {
@@ -5554,6 +5615,7 @@ button.btn-floating {
   overflow-y: auto;
   opacity: 0;
   position: absolute;
+  border-radius: 4px;
   left: 0;
   top: 0;
   z-index: 9999;
@@ -5590,7 +5652,7 @@ button.btn-floating {
 
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #26a69a;
+  color: white;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -5759,8 +5821,8 @@ body.keyboard-focused .dropdown-content li:focus {
   right: 0;
   background-color: #5E705D;
   padding: 0;
-  max-height: 80%;
-  width: 90%;
+  max-height: 85%;
+  width: 70%;
   margin: auto;
   overflow-y: auto;
   border-radius: 4px;
@@ -5787,11 +5849,13 @@ body.keyboard-focused .dropdown-content li:focus {
 
 .modal .modal-close {
   cursor: pointer;
+  color: white;
 }
 
 .modal .modal-footer {
   border-radius: 0 0 2px 2px;
   background-color: #5E705D;
+  color: white;
   padding: 4px 6px;
   height: 56px;
   width: 100%;
@@ -6098,7 +6162,7 @@ select:focus {
 
 button:focus {
   outline: none;
-  background-color: #2ab7a9;
+  background-color: #7D8F69;
 }
 
 label {
@@ -6532,9 +6596,9 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field > label {
-  color: #9e9e9e;
+  color: white;
   position: absolute;
-  top: 0;
+  bottom: 0px;
   left: 0;
   font-size: 1rem;
   cursor: text;
@@ -7073,7 +7137,7 @@ textarea.materialize-textarea {
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #26a69a;
+  background-color: red;
 }
 
 .switch label .lever {
@@ -7176,16 +7240,17 @@ select {
 .select-wrapper input.select-dropdown {
   position: relative;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #7D8F69;
+  border-radius: 4px;
   border: none;
-  border-bottom: 1px solid #9e9e9e;
   outline: none;
   height: 3rem;
   line-height: 3rem;
   width: 100%;
   font-size: 16px;
   margin: 0 0 8px 0;
-  padding: 0;
+  padding: 0 0 0 8px;
+  box-shadow: 0px 0px 2px #4d4d4d;
   display: block;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -7195,7 +7260,7 @@ select {
 }
 
 .select-wrapper input.select-dropdown:focus {
-  border-bottom: 1px solid #26a69a;
+  border-bottom: none;
 }
 
 .select-wrapper .caret {
@@ -7210,7 +7275,7 @@ select {
 
 .select-wrapper + label {
   position: absolute;
-  top: -26px;
+  top: -30px;
   font-size: 0.8rem;
 }
 
@@ -7247,15 +7312,15 @@ select:disabled {
 }
 
 body.keyboard-focused .select-dropdown.dropdown-content li:focus {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #A9AF7E;
 }
 
 .select-dropdown.dropdown-content li:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #A9AF7E;
 }
 
 .select-dropdown.dropdown-content li.selected {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: #A9AF7E;
 }
 
 .prefix ~ .select-wrapper {

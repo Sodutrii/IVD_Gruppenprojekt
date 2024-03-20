@@ -6,13 +6,14 @@ const visualisierung = d3.select(diagramm).append('svg');
 
 
 //different values for diagramm sizes
-const size = diagramm.clientWidth;
+const svgSize ={width: diagramm.clientWidth, height: window.innerHeight};
+const size = Math.min(svgSize.width, svgSize.height) - 125;
 var circleRadius = [size * 0.25, size * 0.35, size * 0.5];
 
 //creating svg image for diagramm
 visualisierung
-  .attr("width", size)
-  .attr("height", size * 1.2);
+  .attr("width", svgSize.width)
+  .attr("height", size * 1.3);
 
 //creating groups for different graph parts
 const outerGraph = visualisierung.append('g')
@@ -25,7 +26,7 @@ const innerGraph = visualisierung.append('g')
 
 const legende = visualisierung.append('g')
   .attr('id', 'legende')
-  .attr("transform", `translate(${10},${size * 1.05})`)
+  .attr("transform", `translate(${size * 0.5 - 180},${size * 1.05})`)
 
 
 
@@ -57,7 +58,7 @@ var innerlabelScale = d3.scaleOrdinal()
 
 var outerColor = d3.scaleOrdinal()
   .domain(outerData)
-  .range(["#2b7cff", "#c268e8", "#ff57b9", "#ff6582", "#ff8d4f","#ffb82b"]);
+  .range(["#4fc3f7", "#9575cd", "#e57373", "#ff8a65", "#fff176", "#81c784"]);
 
 
 //on selecting the outer ring
@@ -107,7 +108,7 @@ function onSelectingBigGraphSegment(data){
   .text((d) => innerlabelScale(d) + " " + Math.round(d.value / selectedOuterTotal * 100) + "%")
   .attr("transform", function(d) {return `translate(${arcGen.centroid(d)})`})
   .style("text-anchor", "middle")
-  .style("font-size", 12)
+  .style("font-size", 14)
 }
 //handles the selection Animation vor outerGraph Segments
 function outerGraphSelectAnimation(data){
@@ -137,7 +138,7 @@ const legendUnits = legende.selectAll('g')
   .data(outerData)
   .enter()
   .append('g')
-  .attr('transform', (d,i) => `translate(${(i % 2) * 200},${legendHelper(i) * 25})`);
+  .attr('transform', (d,i) => `translate(${(i % 2) * 200},${legendHelper(i) * 20})`);
 
 //helps with calculating the index for alignment
 function legendHelper(i){

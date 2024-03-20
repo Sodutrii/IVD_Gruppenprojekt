@@ -33,6 +33,7 @@
   <script defer src="./scripts/materializeInit.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./scripts/impactDiagramm.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./scripts/naturschutzGebietDiagramm.js" type="text/javascript" charset="utf-8"></script>
+  <script defer src="./scripts/mapZoom.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" src="./materialize/js/materialize.js"></script>
   <script defer src="./scripts/bar_graph.js" type="text/javascript" charset="utf-8"></script>
 
@@ -46,95 +47,149 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <div class="divider"></div>
 
     <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
-    <div class="row">
-      <div class="col s3">
-        <div class="input-field">
-          <select onchange="filterYear(this.value)">
-            <option value="all">Alle Jahre</option>
-            <option value="1983">1983</option>
-            <option value="1985">1985</option>
-            <option value="1986">1986</option>
-            <option value="1987">1987</option>
-            <option value="1988">1988</option>
-            <option value="1989">1989</option>
-            <option value="1990">1990</option>
-            <option value="1991">1991</option>
-            <option value="1992">1992</option>
-            <option value="1993">1993</option>
-            <option value="1994">1994</option>
-            <option value="1995">1995</option>
-            <option value="1996">1996</option>
-            <option value="1997">1997</option>
-            <option value="1998">1998</option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-          </select>
-          <label>Jahr</label>
-        </div>
-      </div>
-      <div class="col s3">
-        <div class="input-field">
-          <select onchange="filterCountry(this.value)">
-            <option value="all">Alle Länder</option>
-            <option value="BE">Belgien</option>
-            <option value="BG">Bulgarien</option>
-            <option value="DK">Dänemark</option>
-            <option value="DE">Deutschland</option>
-            <option value="EE">Estland</option>
-            <option value="FI">Finnland</option>
-            <option value="FR">Frankreich</option>
-            <option value="GR">Griechenland</option>
-            <option value="IE">Irland</option>
-            <option value="IT">Italien</option>
-            <option value="HR">Kroatien</option>
-            <option value="LV">Lettland</option>
-            <option value="LT">Litauen</option>
-            <option value="LU">Luxemburg</option>
-            <option value="MT">Malta</option>
-            <option value="NL">Niederlande</option>
-            <option value="AT">Österreich</option>
-            <option value="PL">Polen</option>
-            <option value="PT">Portugal</option>
-            <option value="RO">Rumänien</option>
-            <option value="SE">Schweden</option>
-            <option value="SK">Slowakei</option>
-            <option value="SI">Slowenien</option>
-            <option value="ES">Spanien</option>
-            <option value="CZ">Tschechien</option>
-            <option value="HU">Ungarn</option>
-            <option value="CY">Zypern</option>
-          </select>
-          <label>Land</label>
-        </div>
-      </div>
-    </div>
     
-    <div class="col s12" id="naturschutzDiagramm"></div>
+  </div>
+  <div class="container">
+    <div style="position: relative;">
+      
+      <div class="row" style="position: absolute; top: 5px;">
+        <div class="col s3">
+          <div class="input-field">
+            <select onchange="filterYear(this.value)">
+              <option value="all">Alle Jahre</option>
+              <option value="1983">1983</option>
+              <option value="1985">1985</option>
+              <option value="1986">1986</option>
+              <option value="1987">1987</option>
+              <option value="1988">1988</option>
+              <option value="1989">1989</option>
+              <option value="1990">1990</option>
+              <option value="1991">1991</option>
+              <option value="1992">1992</option>
+              <option value="1993">1993</option>
+              <option value="1994">1994</option>
+              <option value="1995">1995</option>
+              <option value="1996">1996</option>
+              <option value="1997">1997</option>
+              <option value="1998">1998</option>
+              <option value="1999">1999</option>
+              <option value="2000">2000</option>
+              <option value="2001">2001</option>
+              <option value="2002">2002</option>
+              <option value="2003">2003</option>
+              <option value="2004">2004</option>
+              <option value="2005">2005</option>
+              <option value="2006">2006</option>
+              <option value="2007">2007</option>
+              <option value="2008">2008</option>
+              <option value="2009">2009</option>
+              <option value="2010">2010</option>
+              <option value="2011">2011</option>
+              <option value="2012">2012</option>
+              <option value="2013">2013</option>
+              <option value="2014">2014</option>
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+            </select>
+            <label>Jahr</label>
+          </div>
+        </div>
+        <div class="col s3">
+          <div class="input-field">
+            <select onchange="filterCountry(this.value)">
+              <option value="all">Alle Länder</option>
+              <option value="BE">Belgien</option>
+              <option value="BG">Bulgarien</option>
+              <option value="DK">Dänemark</option>
+              <option value="DE">Deutschland</option>
+              <option value="EE">Estland</option>
+              <option value="FI">Finnland</option>
+              <option value="FR">Frankreich</option>
+              <option value="GR">Griechenland</option>
+              <option value="IE">Irland</option>
+              <option value="IT">Italien</option>
+              <option value="HR">Kroatien</option>
+              <option value="LV">Lettland</option>
+              <option value="LT">Litauen</option>
+              <option value="LU">Luxemburg</option>
+              <option value="MT">Malta</option>
+              <option value="NL">Niederlande</option>
+              <option value="AT">Österreich</option>
+              <option value="PL">Polen</option>
+              <option value="PT">Portugal</option>
+              <option value="RO">Rumänien</option>
+              <option value="SE">Schweden</option>
+              <option value="SK">Slowakei</option>
+              <option value="SI">Slowenien</option>
+              <option value="ES">Spanien</option>
+              <option value="CZ">Tschechien</option>
+              <option value="HU">Ungarn</option>
+              <option value="CY">Zypern</option>
+            </select>
+            <label>Land</label>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="input-field">
+            <select onchange="filterBioRegion(this.value)">
+              <option value="all">Alle Biografischenregion</option>
+              <option value="Alpine">Alpine</option>
+              <option value="Atlantic">Atlantic</option>
+              <option value="Black Sea">Black Sea</option>
+              <option value="Boreal">Boreal</option>
+              <option value="Continental">Continental</option>
+              <option value="Macaronesian">Macaronesian</option>
+              <option value="Marine Atlantic">Marine Atlantic</option>
+              <option value="Marine Baltic">Marine Baltic</option>
+              <option value="Marine Black Sea">Marine Black Sea</option>
+              <option value="Marine Macaronesian">Marine Macaronesian</option>
+              <option value="Marine Mediterranean">Marine Mediterranean</option>
+              <option value="Mediterranean">Mediterranean</option>
+              <option value="Pannonian">Pannonian</option>
+              <option value="Steppic">Steppic</option>
+            </select>
+            <label>Biografischeregionen</label>
+          </div>
+        </div>
+        <div class="col s2">
+          <button class="legendButton" onclick="filterOnlyPollution()" style="position: relative; top: 15px; width: 3em;">
+            <i class="material-icons-round" style="font-size: 30px;">
+              park
+          </i></button>
+        </div>
+        </div>
+        <div style="position: absolute; right: 10px; bottom: 95px;width: 2.5em;">
+          <button class="legendButton" onclick="toggleLegend()">
+            <i class="material-icons-round" style="font-size: 28px;">
+              legend_toggle
+          </i></button>
+      </div>
 
+      <div style="position: absolute; right: 10px; bottom: 54.5px;">
+        <button class="zoomInButton" onclick="handleButtonZoom(1.25)">
+          <i class="material-icons-round" style="font-size: 23px;">
+            add
+        </i></button>
+    </div>
+
+    <div style="position: absolute; right: 10px; bottom: 15px;">
+      <button class="zoomOutButton" onclick="handleButtonZoom(0.75)">
+        <i class="material-icons-round" style="font-size: 23px;">
+          remove
+      </i></button>
+  </div>
+    
+    <div id="naturschutzDiagramm" style="width: 100%; height: 100%;"></div>
+    </div>
+  </div>
+  <div class="container">
     <div class="modal" id="habitatModal">
       <div class="modal-content">
         <div class="row">
@@ -143,7 +198,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col s6">
+          <div class="col s7">
             <ul class="collapsible">
               <li>
                 <div class="collapsible-header">Einflüsse</div>
@@ -157,19 +212,20 @@
                 <div class="collapsible-header">geschützte Arten</div>
                 <div class="collapsible-body">
                   <table class="responsive-table">
-                    <tbody></tbody>
+                    <tbody id="habitatSpeciesTable"></tbody>
                   </table>
                 </div>
               </li>
             </ul>
           </div>
-          <div class="col s6">
+          <div class="col s5">
             <p style="background-color: #7D8F69; border-radius: 4px; padding: 1.5em; margin: 0;">
               <b>Land: </b><span id="Habitat_Country">AT</span><br>
               <b>Größe: </b><span id="Habitat_Size"> 40,94Ha</span> <br>
               <b>Gründungsjahr: </b><span id="Habitat_Date"> 01.06.1998</span> <br>
-              <b>Biografischeregion: </b><br><span id="Habitat_Region">Broad-leaved deciduous woodland</span><br>
+              <b>Biografischeregion: </b><span id="Habitat_Region">Broad-leaved deciduous woodland</span><br>
               <b>Habitatsklasse: </b><span id="Habitat_Class"></span><br>
+              <b>Verschmutzung:</b><span id="Habitat_Pollution"></span>
             </p>
           </div>
         </div>
@@ -186,7 +242,7 @@
         <div id="impactDiagramm" style="margin: 5px;"></div>
       </div>
       <div class="col s5" >
-        <div style="background-color: #7D8F69; margin: 5px; padding: 15px">
+        <div style="background-color: #7D8F69; margin: 5px; padding: 15px; border-radius: 8px">
           <h5 id="titel" style="color: white;">Einflüsse auf Naturschutzgebiete</h5>
           <p style="color: white;">
           <b id="tooltip"></b>

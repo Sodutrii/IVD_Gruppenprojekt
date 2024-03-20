@@ -3,21 +3,21 @@ const diagramm = document.getElementById('naturschutzDiagramm');
 const margin = { top: 50, left: 50, right: 50, bottom: 50 };
 
 const visualisierung = d3.select(diagramm).append('svg');
-
+visualisierung.attr('id', 'HabitatMap');
 
 //different values for diagramm sizes
-const size = diagramm.clientWidth;
+const svgSize = {width: diagramm.clientWidth, height: window.innerHeight};
 
 //creating svg image for diagramm
 visualisierung
-  .attr("width", size)
-  .attr("height", size);
+  .attr("width", svgSize.width)
+  .attr("height", svgSize.height);
 
 visualisierung.append('rect')
-  .attr('width', size)
-  .attr('height', size)
+  .attr('width', svgSize.width)
+  .attr('height', svgSize.height)
   .attr('fill', 'black')
-  .attr('opacity', 0.1)
+  .attr('opacity', 0.05)
 
 //creating groups for different graph parts
 const countries = visualisierung.append('g')
@@ -40,7 +40,7 @@ var onlyImpacted = false;
 
 //returns true or false depending on the selection of filters to determin if habitat should be included
 function filterHabitats(habitat){
-
+    
     //check year
     if(selectedYear != 'all'){
       year = habitat.DATE.split(' ')[0].slice(-4);
@@ -50,12 +50,21 @@ function filterHabitats(habitat){
     //check country
     if(selectedCountry != 'all'){
       country = habitat.SITECODE.slice(0,2);
-      console.log(country);
+      //console.log(country);
       if(selectedCountry != country) return false;
     } 
     //check biographicregion
-
+    if(selectedRegion != 'all'){
+      region = habitat.REGION;
+      if(selectedRegion != region) return false;
+    }
     //check impact
+    if(onlyImpacted){
+      pollution = habitat.POLLUTION;
+      console.log(pollution);
+      if(pollution == 'P' || pollution == 'N' || pollution == 'T' || pollution == 'O' || pollution == 'X' || pollution == 'A') return true;
+      else return false;
+    };
     return true;
 }
 
@@ -63,22 +72,23 @@ function filterHabitats(habitat){
 //scales
 var sizeScale = d3.scaleLinear()
     .domain([minSize,maxSize])
-    .range([3,8]);
+    .range([1,8]);
 
 var pollutionColorScale = d3.scaleOrdinal()
     .domain(['A','N','P','T','O','X',''])
-    .range(["#2b7cff", "#c268e8", "#ff57b9", "#ff6582", "#ff8d4f","#ffb82b", "#A9AF7E"]);
+    .range(["#4fc3f7", "#9575cd", "#e57373", "#ff8a65", "#fff176", "#81c784", "#c3c991"]);
 
 
 //handle zoom of the map
 var scalingFactor = 1;
 const zoom = d3.zoom()
     .scaleExtent([.8, 50])
-    .translateExtent([[-diagramm.clientWidth, -diagramm.clientHeight],[1.5 * diagramm.clientWidth, 1.5 * diagramm.clientHeight]])
+    .translateExtent([[-0.25 * diagramm.clientWidth, -0.25 * diagramm.clientHeight],[1.25 * diagramm.clientWidth, 1.25 * diagramm.clientHeight]])
     .on('zoom', zoomed);
     
 
-function zoomed({ transform}){
+function zoomed({transform}){
+  console.log(transform);
     countries.attr('transform', transform);
     habitats.attr('transform', transform);
     drawHabitats();
@@ -103,7 +113,7 @@ d3.json('./data/europe.geojson').then(mapData =>{
         .append('path')
         .attr('opacity', '1')
         .attr('stroke', '#AAAAAA')
-        .attr('fill' , '#E6E5A3')
+        .attr('fill' , '#f7fccf')
         .attr('stroke-width', '.1px')
         .attr('d', (features) =>{ return pathBuilder(features);})
 })
@@ -130,6 +140,9 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
 
 //HABITATS: onclick event for habitats
 habitatSelection.on('click', function(d, i){updateTooltip(this.__data__);});})
+
+
+
 
 //Update Impact-Table
 function updateImpactTable(data){
@@ -173,10 +186,61 @@ function updateImpactTable(data){
   });
 
 }
+//updates the table for species
+function updateSpeciesTable(data){
+
+  var table = document.getElementById('habitatSpeciesTable');
+  //clear old entries
+  while (table.firstChild) {
+    table.firstChild.remove();
+}
+  var species = data.SPECIES.split(',');
+  //creat one row for each species entry
+  species.forEach(element => {
+
+    //add species name
+    row = table.insertRow(-1);
+    species = (element.split(':')[0] != undefined ? element.split(':')[0] : '-');
+    row.insertCell(-1).innerHTML = species;
+    
+    //handle impactType
+    typeSymbol = document.createElement('span');
+    typeSymbol.style.color = "green";
+    console.log(typeSymbol.style.color);
+    typeSymbol.classList.add("material-icons-round");
+
+    type = 'remove';
+    populationTrend = element.split(':')[1];
+    if(populationTrend == 'c' || populationTrend == 'c'){
+      //going up
+      type = 'trending_up';
+      typeSymbol.style.color = "green";
+    }
+    else if(populationTrend == 'p'){
+      //staying
+      type = 'trending_flat';
+      typeSymbol.style.color = 'red';
+    }
+    else if(populationTrend == 'w'){
+      //going down
+      type = 'trending_down';
+    }
+    else{
+      //unkonwn
+    }
+
+    typeSymbol = document.createElement('span');
+    typeSymbol.classList.add("material-icons-round");
+    typeSymbol.innerHTML = type;
+
+    row.insertCell(-1).appendChild(typeSymbol);})
+}
 
 //Updates the Tooltip to the side of the map
 function updateTooltip(data){
-  updateImpactTable(data)
+  //console.log(data);
+  updateImpactTable(data);
+  updateSpeciesTable(data);
   //tooltip to the side:
   document.getElementById('Habitat_Name').textContent = data.SITENAME;
   document.getElementById('Habitat_Country').textContent = data.COUNTRY.toUpperCase();
@@ -184,7 +248,7 @@ function updateTooltip(data){
   document.getElementById('Habitat_Date').textContent = data.DATE.split(' ')[0].slice(-4);
   document.getElementById('Habitat_Region').textContent = data.REGION;
   document.getElementById('Habitat_Class').textContent = data.HABITATCLASS;
-
+  document.getElementById('Habitat_Pollution').textContent = data.IMPACT_TYPE;
   M.Modal.getInstance(document.getElementById('habitatModal')).open();
 }
 
@@ -232,9 +296,23 @@ function filterYear(year){
 
 function filterCountry(country){
   selectedCountry = country;
+  console.log(selectedCountry);
   drawHabitats();
 }
 function filterBioRegion(region){
+  selectedRegion = region;
+  console.log("selected" + selectedRegion);
+  drawHabitats();
+}
 
+function filterOnlyPollution(){
+  if(onlyImpacted) {
+    onlyImpacted = false;
+  }
+  else{
+    onlyImpacted = true;
+  }
+  console.log(onlyImpacted);
+  drawHabitats();
 }
 
