@@ -7,7 +7,7 @@ const zoomButton = visualisierung.append('g')
   .attr("transform", `translate(${svgSize.width - width - mapMargin},${svgSize.height - height - mapMargin})`);
 
 //creat rectangular background
-zoomButton.append('rect')
+/*zoomButton.append('rect')
   .attr('width', width)
   .attr('height', height)
   .attr('rx', 10)
@@ -40,7 +40,7 @@ zoomButton.append('text')
   .attr('x', width * 0.5 - 18)
   .style('font-size', 36)
   .text('remove')
-  .on('click', function(){handleButtonZoom(0.75)});
+  .on('click', function(){handleButtonZoom(0.75)});*/
 //handles the zoom for the minus & plus button
 function handleButtonZoom(change){
   visualisierung.call(zoom.scaleBy, change);
@@ -51,7 +51,7 @@ function handleButtonZoom(change){
 const legendData = ['A','N','P','T','O','X',''];
 const legende = visualisierung.append('g')
   .attr('id', 'legende')
-  .attr("transform", `translate(${svgSize.width - 250 - mapMargin},${2 * mapMargin + 40})`)
+  .attr("transform", `translate(${svgSize.width - 295 - mapMargin},${svgSize.height - 167 - mapMargin})`)
 
   const legendeToggle = visualisierung.append('g')
   .attr('id', 'legendeToggle')
@@ -62,13 +62,13 @@ legende.append('rect')
   .attr('width', 250)
   .attr('height', 170)
   .attr('fill', 'black')
-  .attr('opacity', 0.1)
-  .attr('rx', 10)
-  .attr('ry', 10)
+  .attr('opacity', 0.2)
+  .attr('rx', 4)
+  .attr('ry', 4)
 
 //creating legend toggle:
 //the background
-legendeToggle.append('rect')
+/*legendeToggle.append('rect')
   .attr('width', 40)
   .attr('height', 40)
   .attr('fill', '#5E705D')
@@ -82,7 +82,7 @@ legendeToggle.append('text')
   .attr('x', 2)
   .style('font-size', 35)
   .text('legend_toggle')
-  .on('click', toggleLegend)
+  .on('click', toggleLegend)*/
 //handle the toggling of the legend
 let legendIsVisible = true;
 function toggleLegend(){
@@ -92,14 +92,14 @@ function toggleLegend(){
     legendIsVisible = false;
     legende.transition()
     .duration(1000)
-    .attr('transform', `translate(${svgSize.width + 100},${60})`)
+    .attr('transform', `translate(${svgSize.width - mapMargin + 100},${svgSize.height - 167 - mapMargin})`)
   }
   else{
     //turn legend on
     legendIsVisible = true;
     legende.transition()
     .duration(1000)
-    .attr('transform', `translate(${svgSize.width - 250 - mapMargin},${60})`)
+    .attr('transform', `translate(${svgSize.width - 295 - mapMargin},${svgSize.height - 167 - mapMargin})`)
   }
 }
 //creating the legende

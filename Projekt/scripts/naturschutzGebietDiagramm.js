@@ -6,7 +6,7 @@ const visualisierung = d3.select(diagramm).append('svg');
 visualisierung.attr('id', 'HabitatMap');
 
 //different values for diagramm sizes
-const svgSize = {width: diagramm.clientWidth, height: diagramm.clientWidth * 0.6};
+const svgSize = {width: diagramm.clientWidth, height: window.innerHeight};
 
 //creating svg image for diagramm
 visualisierung
@@ -17,7 +17,7 @@ visualisierung.append('rect')
   .attr('width', svgSize.width)
   .attr('height', svgSize.height)
   .attr('fill', 'black')
-  .attr('opacity', 0.1)
+  .attr('opacity', 0.05)
 
 //creating groups for different graph parts
 const countries = visualisierung.append('g')
@@ -76,7 +76,7 @@ var sizeScale = d3.scaleLinear()
 
 var pollutionColorScale = d3.scaleOrdinal()
     .domain(['A','N','P','T','O','X',''])
-    .range(["#2b7cff", "#c268e8", "#ff57b9", "#ff6582", "#ff8d4f","#ffb82b", "#A9AF7E"]);
+    .range(["#4fc3f7", "#9575cd", "#e57373", "#ff8a65", "#fff176", "#81c784", "#c3c991"]);
 
 
 //handle zoom of the map
@@ -113,7 +113,7 @@ d3.json('./data/europe.geojson').then(mapData =>{
         .append('path')
         .attr('opacity', '1')
         .attr('stroke', '#AAAAAA')
-        .attr('fill' , '#E6E5A3')
+        .attr('fill' , '#f7fccf')
         .attr('stroke-width', '.1px')
         .attr('d', (features) =>{ return pathBuilder(features);})
 })
