@@ -46,7 +46,40 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
+
+  <!-- Navbar
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#karteHeader">Naturschutzgebiete in Europa</a></li>
+        <li><a href="#impactDiagrammHeader">Einflüsse auf Naturschutzgebiete</a></li>
+        <li><a href="#barGraphTimeHeader">Entwicklung über Zeit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Hero Image Section
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="hero-image" style="position: relative; min-height: 600px; /* Increased height */ background-image: url('./Images/cat_nature.png'); background-size: cover; background-position: center;">
+    <div class="hero-text" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); color: white; text-align: left; padding-left: 6em;">
+      <h1>Biodiversität<br>in der EU</h1>
+    </div>
+  </div>
+  
+  <!-- Information Bar -->
+  <div class="info-bar" style="background-color: #7D8F69; padding: 1em; min-height: 150px; /* Increased height */ text-align: center; color: white;">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam urna varius justo condimentum, sit amet vulputate velit tristique.</p>
+  </div>
+
+
+  <!-- Karte
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="container" id="karteHeader">
 
     <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
     
@@ -185,6 +218,7 @@
           remove
       </i></button>
   </div>
+
     
     <div id="naturschutzDiagramm" style="width: 100%; height: 100%;"></div>
     </div>
@@ -235,7 +269,10 @@
       </div>
     </div>
 
-    <div class="divider"></div>
+  <!-- Impact Diagram
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <div class="divider" id="impactDiagrammHeader"></div>
     <h3 style="color: white;">Einflüsse auf Naturschutzgebiete</h3>
     <div class="row">
       <div class="col s7">
@@ -250,7 +287,6 @@
             Obwohl Naturschutzgebiete dazu diennen um die Natur und Umwelt zu sichern 
             und von menschlichen Einflüssen zu verschonen, sind trotzdem viele Naturschutzgebiete negativ Einflüssen ausgesetzt.
         </div>
-        
       </div>
         </p>
       </div>
@@ -269,8 +305,10 @@
       </div>
   </div>
   
+  <!-- Bar Graph
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-  <div class="container">
+  <div class="container" id="barGraphTimeHeader">
     <hr>
     <h3>Naturschutzgebiete über Zeit</h3>
     <div class="row">
@@ -282,13 +320,14 @@
             </div>
         </div>
         <!-- Right column for the description and horizontal line -->
-        <div style="background-color: #7D8F69; margin: 5px; padding: 15px">
-            <h5 id="titel">Naturschutzgebiete über Zeit</h5>
-            <p>
+          <div style="background-color: #7D8F69; margin: 5px; padding: 15px; border-radius: 8px">
+            <h5 id="titel" style="color: white;">Einflüsse auf Naturschutzgebiete</h5>
+            <p style="color: white;">
             <b id="tooltip"></b>
-            <div id="description">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor.
-            </div>
+            <div id="description" style="color: white;">
+              Obwohl Naturschutzgebiete dazu diennen um die Natur und Umwelt zu sichern 
+              und von menschlichen Einflüssen zu verschonen, sind trotzdem viele Naturschutzgebiete negativ Einflüssen ausgesetzt.
+          </div>
             </p>
         </div>
   </div>
