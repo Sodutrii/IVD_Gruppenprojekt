@@ -2,45 +2,6 @@ const mapMargin = 10;
 const height = 80;
 const width = 40;
 
-const zoomButton = visualisierung.append('g')
-  .attr('id', 'zoomButton')
-  .attr("transform", `translate(${svgSize.width - width - mapMargin},${svgSize.height - height - mapMargin})`);
-
-//creat rectangular background
-/*zoomButton.append('rect')
-  .attr('width', width)
-  .attr('height', height)
-  .attr('rx', 10)
-  .attr('ry', 10)
-  .attr('fill', '#5E705D')
-//creat divider
-zoomButton.append('line')
-  .attr('x1', 0)
-  .attr('y1', height * 0.5)
-  .attr('x2', width)
-  .attr('y2', height * 0.5)
-  .style('stroke-width', 2)
-  .style('stroke', '#546554')
-
-//creat plus symbol
-zoomButton.append('text')
-  .attr('class', 'material-icons-round')
-  .attr('fill', '#E6E5A3')
-  .attr('y', 36)
-  .attr('x', width * 0.5 - 18)
-  .style('font-size', 36)
-  .text('add')
-  .on('click', function(){handleButtonZoom(1.25)});
-
-//creat minus symbol
-zoomButton.append('text')
-  .attr('class', 'material-icons-round')
-  .attr('fill', '#E6E5A3')
-  .attr('y', height * 0.5 + 36)
-  .attr('x', width * 0.5 - 18)
-  .style('font-size', 36)
-  .text('remove')
-  .on('click', function(){handleButtonZoom(0.75)});*/
 //handles the zoom for the minus & plus button
 function handleButtonZoom(change){
   visualisierung.call(zoom.scaleBy, change);
@@ -51,7 +12,7 @@ function handleButtonZoom(change){
 const legendData = ['A','N','P','T','O','X',''];
 const legende = visualisierung.append('g')
   .attr('id', 'legende')
-  .attr("transform", `translate(${svgSize.width - 295 - mapMargin},${svgSize.height - 167 - mapMargin})`)
+  .attr("transform", `translate(${svgSize.width - mapMargin + 100},${svgSize.height - 167 - mapMargin})`)
 
   const legendeToggle = visualisierung.append('g')
   .attr('id', 'legendeToggle')
@@ -66,25 +27,8 @@ legende.append('rect')
   .attr('rx', 4)
   .attr('ry', 4)
 
-//creating legend toggle:
-//the background
-/*legendeToggle.append('rect')
-  .attr('width', 40)
-  .attr('height', 40)
-  .attr('fill', '#5E705D')
-  .attr('rx', 10)
-  .attr('ry', 10)
-//the symbol
-legendeToggle.append('text')
-  .attr('class', 'material-icons-round')
-  .attr('fill', '#E6E5A3')
-  .attr('y', 37)
-  .attr('x', 2)
-  .style('font-size', 35)
-  .text('legend_toggle')
-  .on('click', toggleLegend)*/
 //handle the toggling of the legend
-let legendIsVisible = true;
+let legendIsVisible = false;
 function toggleLegend(){
   console.log("toggle")
   if(legendIsVisible){
