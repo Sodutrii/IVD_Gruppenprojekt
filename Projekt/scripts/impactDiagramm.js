@@ -18,15 +18,15 @@ visualisierung
 //creating groups for different graph parts
 const outerGraph = visualisierung.append('g')
   .attr('id', 'outerGraph')
-  .attr("transform", `translate(${size / 2},${size / 2})`);
+  .attr("transform", `translate(${svgSize.width / 2},${size / 2})`);
 
 const innerGraph = visualisierung.append('g')
   .attr('id', 'innerGraph')
-  .attr("transform", `translate(${size / 2},${size / 2})`);
+  .attr("transform", `translate(${svgSize.width / 2},${size / 2})`);
 
 const legende = visualisierung.append('g')
   .attr('id', 'legende')
-  .attr("transform", `translate(${size * 0.5 - 180},${size * 1.05})`)
+  .attr("transform", `translate(${size * 0.5 - 150},${size * 1.05})`)
 
 
 
@@ -138,8 +138,19 @@ const legendUnits = legende.selectAll('g')
   .data(outerData)
   .enter()
   .append('g')
-  .attr('transform', (d,i) => `translate(${(i % 2) * 200},${legendHelper(i) * 20})`);
+  .attr('transform', (d,i) => `translate(${(i % 2) * 200},${legendHelper(i) * 30})`)
 
+//add outline for legende
+legende.selectAll('g')
+  .append('rect')
+  .attr('stroke', '#7D8F69')
+  .attr('stroke-width', 1.5)
+  .attr('width', (d,i) => (i % 2) * 55 + 195)
+  .attr('height', 24)
+  .attr('rx', 4)
+  .attr('x', -5)
+  .attr('y', -4)
+  .attr('fill', 'transparent')
 //helps with calculating the index for alignment
 function legendHelper(i){
   if(i % 2 == 0) return (i / 2);
@@ -150,6 +161,7 @@ legendUnits.data(outerData)
   .append('rect')
   .attr('width', 15)
   .attr('height', 15)
+  .attr('rx', 4)
   .attr('fill', (d) => outerColor(d));
 //Legende: adds the text to the legende
 legendUnits.data(outerData)
