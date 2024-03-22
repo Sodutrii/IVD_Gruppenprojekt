@@ -1,5 +1,11 @@
 /*----custom additions----*/
 
+/*Smooth scroll for navbar*/
+html {
+  scroll-behavior: smooth;
+}
+
+
 .legendButton{
   background-color: #7D8F69;
   border-style: solid;
@@ -4346,8 +4352,8 @@ table span.badge {
 }
 
 nav {
-  color: #fff;
-  background-color: #ee6e73;
+  color: #7d8f69;
+  background-color: #7d8f69;
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -4368,7 +4374,7 @@ nav.nav-extended .nav-content {
 }
 
 nav a {
-  color: #fff;
+  color: #7d8f69;
 }
 
 nav i,
@@ -4405,11 +4411,7 @@ nav .sidenav-trigger i {
 }
 
 nav .brand-logo {
-  position: absolute;
-  color: #fff;
-  display: inline-block;
-  font-size: 2.1rem;
-  padding: 0;
+  display: none;
 }
 
 nav .brand-logo.center {
