@@ -52,8 +52,8 @@
   <div class="container">
     <div style="position: relative;">
       
-      <div class="row" style="position: absolute; top: 5px;">
-        <div class="col s3">
+      <div class="row" style="position: absolute; top: -0px; width: 100%;">
+        <div class="col s2">
           <div class="input-field">
             <select onchange="filterYear(this.value)">
               <option value="all">Alle Jahre</option>
@@ -96,10 +96,9 @@
               <option value="2020">2020</option>
               <option value="2021">2021</option>
             </select>
-            <label>Jahr</label>
           </div>
         </div>
-        <div class="col s3">
+        <div class="col s2">
           <div class="input-field">
             <select onchange="filterCountry(this.value)">
               <option value="all">Alle Länder</option>
@@ -131,10 +130,9 @@
               <option value="HU">Ungarn</option>
               <option value="CY">Zypern</option>
             </select>
-            <label>Land</label>
           </div>
         </div>
-        <div class="col s4">
+        <div class="col s3">
           <div class="input-field">
             <select onchange="filterBioRegion(this.value)">
               <option value="all">Alle Biografischenregion</option>
@@ -153,14 +151,11 @@
               <option value="Pannonian">Pannonian</option>
               <option value="Steppic">Steppic</option>
             </select>
-            <label>Biografischeregionen</label>
           </div>
         </div>
-        <div class="col s2">
-          <button class="legendButton" onclick="filterOnlyPollution();changeColor()" style="position: relative; top: 15px; width: 3em;">
-            <i class="material-icons-round" id="impactIcon" style="font-size: 30px;">
-              park
-          </i></button>
+        <div class="col s4">
+          <button id="pollutionButton" class="legendButton" onclick="filterOnlyPollution();changeColor()" style="position: relative; top: 15px; width:12em; padding: 13.31px; font-size: 16px;">
+            Nur Verschmutzung</button>
         </div>
         </div>
         <div style="position: absolute; right: 10px; bottom: 95px;width: 2.5em;">

@@ -23,7 +23,7 @@ legende.append('rect')
   .attr('width', 250)
   .attr('height', 170)
   .attr('fill', 'black')
-  .attr('opacity', 0.2)
+  .attr('opacity', 0.4)
   .attr('rx', 4)
   .attr('ry', 4)
 
