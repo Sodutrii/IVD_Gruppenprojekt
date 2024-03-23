@@ -204,8 +204,8 @@
           </div>
         </div>
         <div class="col s2">
-          <button class="legendButton" onclick="filterOnlyPollution()" style="position: relative; top: 15px; width: 3em;">
-            <i class="material-icons-round" style="font-size: 30px;">
+          <button class="legendButton" onclick="filterOnlyPollution();changeColor()" style="position: relative; top: 15px; width: 3em;">
+            <i class="material-icons-round" id="impactIcon" style="font-size: 30px;">
               park
           </i></button>
         </div>
@@ -240,7 +240,7 @@
       <div class="modal-content">
         <div class="row">
           <div class="col s12">
-            <h4 id="Habitat_Name" style="background-color:#7D8F69;padding: 0.5em; border-radius: 4px;">Habitats Name</h4>
+            <h4 id="Habitat_Name" style="background-color:#7D8F69;padding: 1rem; border-radius: 4px;">Habitats Name</h4>
           </div>
         </div>
         <div class="row">
@@ -271,7 +271,7 @@
               <b>Gründungsjahr: </b><span id="Habitat_Date"> 01.06.1998</span> <br>
               <b>Biografischeregion: </b><span id="Habitat_Region">Broad-leaved deciduous woodland</span><br>
               <b>Habitatsklasse: </b><span id="Habitat_Class"></span><br>
-              <b>Verschmutzung:</b><span id="Habitat_Pollution"></span>
+              <b>Verschmutzung: </b><span id="Habitat_Pollution"></span>
             </p>
           </div>
         </div>
@@ -294,7 +294,7 @@
         <div id="impactDiagramm" style="margin: 5px;"></div>
       </div>
       <div class="col s5" >
-        <div style="background-color: #7D8F69; margin: 5px; padding: 15px; border-radius: 8px">
+        <div style="background-color: #7D8F69; padding: 0.75rem 1.5rem 1.5rem 1.5rem; border-radius: 4px">
           <h5 id="titel" style="color: white;">Einflüsse auf Naturschutzgebiete</h5>
           <p style="color: white;">
           <b id="tooltip"></b>

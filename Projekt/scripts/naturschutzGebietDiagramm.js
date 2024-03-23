@@ -4,6 +4,7 @@ const margin = { top: 50, left: 50, right: 50, bottom: 50 };
 
 const visualisierung = d3.select(diagramm).append('svg');
 visualisierung.attr('id', 'HabitatMap');
+visualisierung.style('border-radius', '4px')
 
 //different values for diagramm sizes
 const svgSize = {width: diagramm.clientWidth, height: window.innerHeight};
@@ -13,6 +14,7 @@ visualisierung
   .attr("width", svgSize.width)
   .attr("height", svgSize.height);
 
+//add background
 visualisierung.append('rect')
   .attr('width', svgSize.width)
   .attr('height', svgSize.height)
@@ -30,7 +32,7 @@ const habitats = visualisierung.append('g')
 
 //sizes where calculated before and saved as Varaibles to save computing time
 const maxSize = 7186094;
-const minSize = 1;
+const minSize = 0.01;
 
 //variables for filtering habitatMap
 var selectedYear = 'all';
@@ -72,13 +74,50 @@ function filterHabitats(habitat){
 //scales
 var sizeScale = d3.scaleLinear()
     .domain([minSize,maxSize])
-    .range([1,8]);
+    .range([1,5]);
 
 var pollutionColorScale = d3.scaleOrdinal()
     .domain(['A','N','P','T','O','X',''])
     .range(["#4fc3f7", "#9575cd", "#e57373", "#ff8a65", "#fff176", "#81c784", "#c3c991"]);
 
-
+//dictionaries
+const countryDict = {
+  BE : "Belgien",
+  BG : "Bulgarien",
+  DK : "Dänemark",
+  DE : "Deutschland",
+  EE : "Estland",
+  FI : "Finnland",
+  FR : "Frankreich",
+  GR : "Griechenland",
+  IE : "Irland",
+  IT : "Italien",
+  HR : "Kroatien",
+  LV : "Lettland",
+  LT : "Litauen",
+  LU : "Luxemburg",
+  MT : "Malta",
+  NL : "Niederlande",
+  AT : "Österreich",
+  PL : "Polen",
+  RO : "Rumänien",
+  SE : "Schweden",
+  SK : "Slowakei",
+  SI : "Slowenien",
+  ES : "Spanien",
+  CZ : "Tschechien",
+  HU : "Ungarn",
+  CY : "Zypern"
+}
+const pollutionDict = {
+  N : "Stickstoffbelastung",
+  A : "Versauerung",
+  P : "Phosphor- & Phospatbelastung",
+  O : "Organische Chemikalien",
+  X : "Gemischtee Verschmutzung",
+  T : "Anorganische Chemikalien",
+  '' : "keine"
+}
 //handle zoom of the map
 var scalingFactor = 1;
 const zoom = d3.zoom()
@@ -88,7 +127,6 @@ const zoom = d3.zoom()
     
 
 function zoomed({transform}){
-  console.log(transform);
     countries.attr('transform', transform);
     habitats.attr('transform', transform);
     drawHabitats();
@@ -129,7 +167,7 @@ d3.dsv(';','./data/naturschutzGebiete.csv').then(Data =>{
         .append('circle')
         .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
         .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
-        .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+        .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ (2 * scalingFactor)))
         .attr('fill',element => pollutionColorScale(element.POLLUTION))
         .attr('opacity', 1);
       },
@@ -165,17 +203,19 @@ function updateImpactTable(data){
     typeSymbol.style.color = "green";
     console.log(typeSymbol.style.color);
     typeSymbol.classList.add("material-icons-round");
-
+    d3.select(typeSymbol).attr('color', 'green')
     type = 'remove';
     if(element.split(':')[1] == 'P'){
       //Postitive Type
       type = 'thumb_up';
       typeSymbol.style.color = "green";
+      d3.select(typeSymbol).attr('background-color', 'green')
     }
     else if(element.split(':')[1] == 'N'){
       //negative Type
       type = 'thumb_down';
       typeSymbol.style.color = 'red';
+      d3.select(typeSymbol).style('fill', 'green')
     }
 
     typeSymbol = document.createElement('span');
@@ -243,12 +283,12 @@ function updateTooltip(data){
   updateSpeciesTable(data);
   //tooltip to the side:
   document.getElementById('Habitat_Name').textContent = data.SITENAME;
-  document.getElementById('Habitat_Country').textContent = data.COUNTRY.toUpperCase();
+  document.getElementById('Habitat_Country').textContent = countryDict[data.COUNTRY.toUpperCase()];
   document.getElementById('Habitat_Size').textContent = data.AREAHA + "Ha";
   document.getElementById('Habitat_Date').textContent = data.DATE.split(' ')[0].slice(-4);
   document.getElementById('Habitat_Region').textContent = data.REGION;
   document.getElementById('Habitat_Class').textContent = data.HABITATCLASS;
-  document.getElementById('Habitat_Pollution').textContent = data.IMPACT_TYPE;
+  document.getElementById('Habitat_Pollution').textContent = pollutionDict[data.POLLUTION];
   M.Modal.getInstance(document.getElementById('habitatModal')).open();
 }
 
@@ -262,7 +302,7 @@ function drawHabitats(){
           .append('circle')
           .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
           .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
-          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ (2 * scalingFactor)))
           .attr('fill',element => pollutionColorScale(element.POLLUTION))
           .attr('opacity', 1);
         },
@@ -270,7 +310,7 @@ function drawHabitats(){
           return update
           .attr('cx', function (element){return projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[0]})
           .attr('cy', element => projection([Number(element.LONGITUDE.replace(',','.')),Number(element.LATITUDE.replace(',','.'))])[1])
-          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ scalingFactor))
+          .attr('r',  element => sizeScale(Number(element.AREAHA.replace(',','.'))/ (2 * scalingFactor)))
           .attr('fill',element => pollutionColorScale(element.POLLUTION))
           .attr('opacity', 1);
          },
@@ -314,5 +354,16 @@ function filterOnlyPollution(){
   }
   console.log(onlyImpacted);
   drawHabitats();
+}
+
+//------------------------
+//handle color change for only imacted button
+function changeColor(){
+  if(onlyImpacted){
+    d3.select('#impactIcon').style('color', '#b3b3b3')
+  }
+  else{
+    d3.select('#impactIcon').style('color', 'white')
+  }
 }
 
