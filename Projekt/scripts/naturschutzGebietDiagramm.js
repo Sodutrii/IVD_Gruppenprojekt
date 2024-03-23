@@ -360,7 +360,7 @@ function filterOnlyPollution(){
 //handle color change for only imacted button
 function changeColor(){
   if(onlyImpacted){
-    d3.select('#pollutionButton').style('color', '#b3b3b3')
+    d3.select('#pollutionButton').style('color', '#C3C991')
   }
   else{
     d3.select('#pollutionButton').style('color', 'white')
