@@ -2676,7 +2676,7 @@ ul:not(.browser-default) {
 
 ul:not(.browser-default) > li {
   list-style-type: none;
-  margin: 0 0 1rem 0
+  margin: 0 0 0 0;
 }
 
 a {
@@ -5618,7 +5618,7 @@ button.btn-floating {
 }
 
 .dropdown-content {
-  background-color: #fff;
+  background-color: #7D8F69;
   margin: 0;
   display: none;
   min-width: 100px;
@@ -5645,6 +5645,7 @@ button.btn-floating {
   line-height: 1.5rem;
   width: 100%;
   text-align: left;
+  margin-bottom: 0rem;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active {
@@ -5935,6 +5936,7 @@ body.keyboard-focused .dropdown-content li:focus {
   padding: 1rem;
   background-color: #7D8F69;
   border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
 .collapsible-header:focus {
