@@ -25,20 +25,23 @@ const endangeredSpeciesList = [
   { Year: '2022', Vertebrates: 10739, Invertebrates: 6161 },
   { Year: '2023', Vertebrates: 11195, Invertebrates: 6221 }
 ];
+
+
   
 document.addEventListener('DOMContentLoaded', function() {
   // Set dimensions and margins for the graph
-  const margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+  const margin = { top: 0, right: 10, bottom: 0, left: 10 },
+        viewBoxWidth = 100, // Original SVG width for the viewBox
+        fixedHeight = 100; // Fixed height for the SVG
 
-  // Create SVG element
-  const svg = d3.select("#chart").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", 
-            "translate(" + margin.left + "," + margin.top + ")");
+  const svgContainer = d3.select("#chart").append("svg")
+    .attr("viewBox", `0 0 ${viewBoxWidth} ${fixedHeight}`)
+    .attr("preserveAspectRatio", "xMidYMid meet") // Ensures SVG is centered and scales horizontally
+    .style("width", "100%") // Ensure it fills the container width
+    .style("height", `${fixedHeight}px`); // Fixed height
+
+  const svg = svgContainer.append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // Scale for the bands
   const x = d3.scaleBand()
