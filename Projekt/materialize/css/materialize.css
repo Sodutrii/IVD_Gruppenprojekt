@@ -2755,7 +2755,8 @@ a {
 .divider {
   height: 1px;
   overflow: hidden;
-  background-color: #e0e0e0;
+  background-color: black;
+  opacity: 0.1;
 }
 
 blockquote {
@@ -3020,7 +3021,7 @@ ul.staggered-list li {
 .page-footer {
   padding-top: 20px;
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #495748;
 }
 
 .page-footer .footer-copyright {
