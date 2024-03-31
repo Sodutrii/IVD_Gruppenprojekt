@@ -136,8 +136,8 @@ visualisierung.call(zoom);
 
 //data set up for europe map
 const projection = d3.geoMercator()
-    .scale((diagramm.clientWidth * 4.8) / (2*Math.PI))
-    .translate([diagramm.clientHeight / 2, diagramm.clientHeight / 2])
+    .scale((diagramm.clientWidth * 4) / (2*Math.PI))
+    .translate([svgSize.width / 2, svgSize.height / 2])
     .center([13,55]);
 
 const mapPathBuilder = d3.geoPath(projection);
@@ -360,10 +360,10 @@ function filterOnlyPollution(){
 //handle color change for only imacted button
 function changeColor(){
   if(onlyImpacted){
-    d3.select('#impactIcon').style('color', '#b3b3b3')
+    d3.select('#pollutionButton').style('color', '#C3C991')
   }
   else{
-    d3.select('#impactIcon').style('color', 'white')
+    d3.select('#pollutionButton').style('color', 'white')
   }
 }
 

@@ -78,17 +78,27 @@
 
   <!-- Karte
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-  <div class="container" id="karteHeader">
-
-    <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
-    
+<div class="container">
+  <div class="row">
+    <div id="karteHeader">
+      <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
+    </div>
+    <div class="col s8">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
+        Suspendisse vehicula magna non augue cursus dictum. 
+        Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.
+      </p>
+    </div>
   </div>
+</div>
+  
   <div class="container">
     <div style="position: relative;">
       
-      <div class="row" style="position: absolute; top: 5px;">
-        <div class="col s3">
+      <div class="row" style="position: absolute; top: -0px; width: 100%;">
+        <div class="col s2">
           <div class="input-field">
             <select onchange="filterYear(this.value)">
               <option value="all">Alle Jahre</option>
@@ -131,10 +141,9 @@
               <option value="2020">2020</option>
               <option value="2021">2021</option>
             </select>
-            <label>Jahr</label>
           </div>
         </div>
-        <div class="col s3">
+        <div class="col s2">
           <div class="input-field">
             <select onchange="filterCountry(this.value)">
               <option value="all">Alle Länder</option>
@@ -166,10 +175,9 @@
               <option value="HU">Ungarn</option>
               <option value="CY">Zypern</option>
             </select>
-            <label>Land</label>
           </div>
         </div>
-        <div class="col s4">
+        <div class="col s3">
           <div class="input-field">
             <select onchange="filterBioRegion(this.value)">
               <option value="all">Alle Biografischenregion</option>
@@ -188,14 +196,11 @@
               <option value="Pannonian">Pannonian</option>
               <option value="Steppic">Steppic</option>
             </select>
-            <label>Biografischeregionen</label>
           </div>
         </div>
-        <div class="col s2">
-          <button class="legendButton" onclick="filterOnlyPollution();changeColor()" style="position: relative; top: 15px; width: 3em;">
-            <i class="material-icons-round" id="impactIcon" style="font-size: 30px;">
-              park
-          </i></button>
+        <div class="col s4">
+          <button id="pollutionButton" class="legendButton" onclick="filterOnlyPollution();changeColor()" style="position: relative; top: 15px; width:12em; padding: 13.31px; font-size: 16px;">
+            Nur Verschmutzung</button>
         </div>
         </div>
         <div style="position: absolute; right: 10px; bottom: 95px;width: 2.5em;">
@@ -238,6 +243,12 @@
                 <div class="collapsible-header">Einflüsse</div>
                 <div class="collapsible-body">
                   <table class="highlight">
+                    <thead>
+                      <tr>
+                        <th>Einfluss</th>
+                        <th>Auswirkung</th>
+                      </tr>
+                    </thead>
                     <tbody id="habitatImpactTable"></tbody>
                   </table>
                 </div>
@@ -246,6 +257,12 @@
                 <div class="collapsible-header">geschützte Arten</div>
                 <div class="collapsible-body">
                   <table class="responsive-table">
+                    <thead>
+                      <tr>
+                        <th>Artenname</th>
+                        <th>Population</th>
+                      </tr>
+                    </thead>
                     <tbody id="habitatSpeciesTable"></tbody>
                   </table>
                 </div>
@@ -275,11 +292,21 @@
     <div class="divider" id="impactDiagrammHeader"></div>
     <h3 style="color: white;">Einflüsse auf Naturschutzgebiete</h3>
     <div class="row">
+      <div class="col s8">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
+          Suspendisse vehicula magna non augue cursus dictum. 
+          Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.
+        </p>
+      </div>
+    </div>
+    <div class="row" style="border-width: 2px; border-radius: 4px;border-style: solid; border-color: #7D8F69">
       <div class="col s7">
-        <div id="impactDiagramm" style="margin: 5px;"></div>
+        <div id="impactDiagramm" style="margin: 5px; padding-top: 1.5rem;"></div>
       </div>
       <div class="col s5" >
-        <div style="background-color: #7D8F69; padding: 0.75rem 1.5rem 1.5rem 1.5rem; border-radius: 4px">
+        <div style="padding: 0.75rem 1.5rem 1.5rem 1.5rem; border-radius: 4px; height: 466px">
           <h5 id="titel" style="color: white;">Einflüsse auf Naturschutzgebiete</h5>
           <p style="color: white;">
           <b id="tooltip"></b>
@@ -304,7 +331,6 @@
           </div>
       </div>
   </div>
-  
   <!-- Bar Graph
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
@@ -333,6 +359,40 @@
   </div>
 </div>
 
+<!--Footer-->
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s4">
+        <h5 class="white-text">IVD - Projekt</h5>
+        <p class="grey-text text-lighten-4">Dieses Projekt wurde im Rahmen der Vorlesung "Interactive Visual Design" im Wintersemester 2023/24, der Uni Ulm erstellt.</p>
+      </div>
+      <div class="col s4">
+        <h5 class="white-text">Datensätze</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="https://www.eea.europa.eu/en/datahub/datahubitem-view/6fc8ad2d-195d-40f4-bdec-576e7d1268e4">Natura 2000</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/leakyMirror/map-of-europe">Europa Karte</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+      <div class="col s4">
+        <h5 class="white-text">Bilder</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Max Zgonnik, Laurin Bischof
+    </div>
+  </div>
+</footer>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
