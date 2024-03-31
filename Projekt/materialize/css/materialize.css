@@ -5,11 +5,9 @@ html {
   scroll-behavior: smooth;
 }
 
-
 .yearLabel {
   font-size: calc(10px + 0.1vw);
 }
-
 
 #endangered_chart {
   display: flex;
@@ -17,6 +15,54 @@ html {
   align-items: center;
   height: 100%;
 }
+
+
+/*Banner stuffs*/
+
+.banner {
+  display: flex;
+  background-color: #7d8f69;
+  align-items: stretch; /* This will make the children fill the container vertically */
+  padding-right: 10vw;
+  height: 30vw;
+}
+.text-content {
+  flex: 1; /* This will allow the text content to grow but not to fill the entire space */
+  padding: 9vw;
+  color: #ffffff;
+  font-size: 1vw;
+  display: flex; /* Added to apply flex properties to text content */
+  flex-direction: column; /* Align children of text-content vertically */
+  justify-content: center; /* Center text-content's children vertically */
+}
+
+.image-content {
+  flex: 0 0 auto; /* This will prevent the image container from growing */
+}
+
+.image-content img {
+  height: 100%;
+  width: auto; /* Adjust the width automatically */
+  object-fit: cover; /* This will make sure the image covers the area without distorting */
+  width: 30vw;
+  height: 30vw;
+}
+
+.banner-image-left .text-content {
+  order: 2; /* The text will be shown after the image */
+}
+
+.banner-image-left .image-content {
+  order: 1; /* The image will be shown before the text */
+}
+
+.banner-image-left .img-left {
+  object-fit: cover; /* This will ensure the image maintains its aspect ratio */
+  width: 30vw; /* Adjust based on your design requirements */
+  height: 30vw; /* Adjust based on your design requirements */
+  padding-left: 10vh; /* Add left padding to the image */
+}
+
 
 
 
