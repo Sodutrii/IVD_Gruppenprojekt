@@ -25,16 +25,18 @@ const endangeredSpeciesList = [
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  const margin = { top: 20, right: 30, bottom: 40, left: 90 },
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+  
+  const margin = { top: 0, right: 50, bottom: 40, left: 50 },
+        width = parseInt(d3.select('#endangered_chart').style('width')) - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
-  const svg = d3.select("#endangered_chart")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const svg = d3.select("#endangered_chart")
+        .append("svg")
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // X axis - Band scale for years
   const x = d3.scaleBand()
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Y axis - Linear scale for counts, flipped
   const y = d3.scaleLinear()
       .domain([0, d3.max(endangeredSpeciesList, d => Math.max(d.Vertebrates, d.Invertebrates))])
-      .range([0, height]);  // Flipping the chart by reversing the range
+      .range([0, height]);
 
   // Vertebrates Bars
   svg.selectAll(".vertebrateBar")
@@ -54,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
       .append("rect")
       .attr("class", "vertebrateBar")
       .attr("x", d => x(d.Year))
-      .attr("y", 0)  // Bars start from the top
-      .attr("height", d => y(d.Vertebrates))  // Height is directly from the scale
+      .attr("y", 0)
+      .attr("height", d => y(d.Vertebrates))
       .attr("width", x.bandwidth())
       .attr("fill", "#e6e5a3");
 
@@ -66,21 +68,125 @@ document.addEventListener('DOMContentLoaded', function() {
       .append("rect")
       .attr("class", "invertebrateBar")
       .attr("x", d => x(d.Year))
-      .attr("y", 0)  // Bars start from the top
-      .attr("height", d => y(d.Invertebrates))  // Height is directly from the scale
+      .attr("y", 0)
+      .attr("height", d => y(d.Invertebrates))
       .attr("width", x.bandwidth())
-      .attr("fill", "#a9af7e");
+      .attr("fill", "#7d8f69");
 
-      svg.selectAll(".yearLabel")
+  svg.selectAll(".yearLabel")
       .data(endangeredSpeciesList)
       .enter()
       .append("text")
       .attr("class", "yearLabel")
-      .attr("x", d => x(d.Year) + x.bandwidth() / 2)  // Center the text within the bar
-      .attr("y", 10)  // Positioning the label at the top of the bar
-      .attr("text-anchor", "middle")  // Center the text
+      .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+      .attr("y", 10)
+      .attr("text-anchor", "middle")
       .text(d => d.Year)
-      .attr("fill", "black")  // Set the color of the text here
-      .attr("font-size", "10px");  // Set the size of the text here
+      .attr("fill", "#e6e5a3")
+      .attr("font-weight", "bold");
 
+      svg.selectAll(".vertebrateText")
+      .data(endangeredSpeciesList)
+      .enter()
+      .append("text")
+      .attr("class", "vertebrateText")
+      .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+      .attr("y", d => y(d.Vertebrates) - 5)
+      .attr("text-anchor", "middle")
+      .text(d => d.Vertebrates)
+      .attr("fill", "#5e705d")
+      .style("font-size", "calc(10px + 0.1vw)")
+      .attr("font-weight", "bold")
+      .style("opacity", 0);
+
+      svg.selectAll(".invertebrateText")
+      .data(endangeredSpeciesList)
+      .enter()
+      .append("text")
+      .attr("class", "invertebrateText")
+      .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+      .attr("y", d => y(d.Invertebrates) - 5)
+      .attr("text-anchor", "middle")
+      .text(d => d.Invertebrates)
+      .attr("fill", "#e6e5a3")
+      .style("font-size", "calc(10px + 0.1vw)")
+      .attr("font-weight", "bold")
+      .style("opacity", 0);
+  
+      let visibleStates = {};
+
+      // Initialize state to false for each year
+      endangeredSpeciesList.forEach(d => {
+        visibleStates[d.Year] = false;
+      });
+      
+      // Mouseover function to fade in text
+      function mouseover(event, d) {
+        if (!visibleStates[d.Year]) {  // Only run if the text is not set to be always visible
+          d3.selectAll('.vertebrateText, .invertebrateText')
+            .filter(dd => dd.Year === d.Year)
+            .transition()
+            .duration(200)
+            .style("opacity", 1);
+        }
+      }
+      
+      // Mouseout function to fade out text
+      function mouseout(event, d) {
+        if (!visibleStates[d.Year]) {  // Only run if the text is not set to be always visible
+          d3.selectAll('.vertebrateText, .invertebrateText')
+            .filter(dd => dd.Year === d.Year)
+            .transition()
+            .duration(200)
+            .style("opacity", 0);
+        }
+      }
+      
+      // Click function to toggle visibility state
+      function click(event, d) {
+        visibleStates[d.Year] = !visibleStates[d.Year];  // Toggle the state
+        d3.selectAll('.vertebrateText, .invertebrateText')
+          .filter(dd => dd.Year === d.Year)
+          .transition()
+          .duration(200)
+          .style("opacity", visibleStates[d.Year] ? 1 : 0);
+      }
+      
+      // Apply the mouseover, mouseout, and click functions to the bars
+      svg.selectAll(".vertebrateBar, .invertebrateBar")
+          .on("mouseover", mouseover)
+          .on("mouseout", mouseout)
+          .on("click", click);
+      
+      // Initial setup to hide all texts
+      svg.selectAll(".vertebrateText, .invertebrateText")
+          .style("opacity", 0);
 });
+
+
+function resize() {
+  const newSvgWidth = parseInt(d3.select('#endangered_chart').style('width'));
+
+  const newFontSize = `calc(10px + ${newSvgWidth * 0.001}vw)`;
+  const newStrokeWidth = Math.max(1, newSvgWidth * 0.001);
+
+  svg.selectAll(".vertebrateText")
+        .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+        .attr("y", d => y(d.Vertebrates) - 5)
+        .style("font-size", `calc(10px + ${newWidth * 0.001}vw)`); // Update responsive font size
+
+    // Update invertebrate text positions
+    svg.selectAll(".invertebrateText")
+        .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+        .attr("y", d => y(d.Invertebrates) - 5)
+        .style("font-size", `calc(10px + ${newWidth * 0.001}vw)`); // Update responsive font size
+
+  svg.selectAll(".yearLabel")
+    .style("font-size", newFontSize);
+
+  svg.selectAll(".my-line")
+    .style("stroke-width", newStrokeWidth);
+
+}
+
+d3.select(window).on('resize', resize);

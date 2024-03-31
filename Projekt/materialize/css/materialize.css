@@ -5,9 +5,17 @@ html {
   scroll-behavior: smooth;
 }
 
-#endangered_chart svg {
-  width: 100%;
-  height: auto; /* Adjust based on your aspect ratio, or remove if not needed */
+
+.yearLabel {
+  font-size: calc(10px + 0.1vw);
+}
+
+
+#endangered_chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 
