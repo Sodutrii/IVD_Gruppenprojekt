@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   
   <!-- CSS
@@ -29,6 +30,7 @@
   <script defer src="./data/europe.geojson" type="text/javascript" charset="utf-8"></script> 
   <script defer src="./data/bar_graph_data.js" type="text/javascript" charset="utf-8"></script> 
   <!--Scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script defer src="./libs/d3/d3.v7.min.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./scripts/materializeInit.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./scripts/impactDiagramm.js" type="text/javascript" charset="utf-8"></script>
@@ -36,6 +38,7 @@
   <script defer src="./scripts/mapZoom.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" src="./materialize/js/materialize.js"></script>
   <script defer src="./scripts/bar_graph.js" type="text/javascript" charset="utf-8"></script>
+  <script defer src="./scripts/endangered_graph.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -60,6 +63,7 @@
       </ul>
     </div>
   </nav>
+  
 
     <!-- Hero Image Section
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -75,6 +79,15 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam urna varius justo condimentum, sit amet vulputate velit tristique.</p>
   </div>
 
+  <div id="endangered_chart">
+    <div id="endangered_chart"></div>
+  </div>
+
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 400px; margin: 20px 0;"></div>
+
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 400px; margin: 20px 0;"></div>
 
   <!-- Karte
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -286,6 +299,9 @@
       </div>
     </div>
 
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 100px; margin: 20px 0;"></div>
+
   <!-- Impact Diagram
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
@@ -319,6 +335,8 @@
       </div>
     </div>
     <div class="divider"></div>
+    <!-- Empty space -->
+    <div style="background-color: #5e705d; height: 15px; margin: 20px 0;"></div>
       <div class="row">
         <div class="col s6">
         EU weit befinden sich
@@ -331,16 +349,26 @@
           </div>
       </div>
   </div>
+<<<<<<< HEAD
+=======
+
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 15px; margin: 20px 0;"></div>
+  
+>>>>>>> nav_bar
   <!-- Bar Graph
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
   <div class="container" id="barGraphTimeHeader">
-    <hr>
+  <div class="divider"></div>
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 100px; margin: 20px 0;"></div>
+
     <h3>Naturschutzgebiete über Zeit</h3>
     <div class="row">
         <div class="seven columns" id="bar-chart-container">
             <!-- Slider -->
-            <div id="slider-container" style="text-align:center; margin-top:20px;">
+            <div id="slider-container" style="text-align:center; margin-top:40px; margin-bottom:40px;">
               <input type="range" style="outline: none; overflow: hidden; width: 100%; border: 0px" id="year-slider" min="2010" max="2022" step="1" value="2022">
               <label for="year-slider">Year: <span id="year-label">2020</span></label>
             </div>
@@ -359,6 +387,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <!--Footer-->
 <footer class="page-footer">
   <div class="container">
@@ -393,6 +422,22 @@
     </div>
   </div>
 </footer>
+=======
+<button onclick="scrollToTop()" class="btn-floating btn-large waves-effect waves-light" id="scrollToTopBtn" style="position: fixed; bottom: 20px; right: 20px; z-index: 100; background-color: #7D8F69;">
+  <i class="material-icons">arrow_upward</i>
+</button>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  });
+}
+</script>
+</body>
+
+>>>>>>> nav_bar
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>

@@ -6,6 +6,20 @@ html {
 }
 
 
+.yearLabel {
+  font-size: calc(10px + 0.1vw);
+}
+
+
+#endangered_chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+
 .legendButton{
   background-color: #7D8F69;
   border-style: solid;
