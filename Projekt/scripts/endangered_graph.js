@@ -59,18 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("width", x.bandwidth())
       .attr("fill", "#e6e5a3");
 
-  // Adding text labels at the top of each vertebrate bar
-  svg.selectAll(".vertebrateText")
-  .data(endangeredSpeciesList)
-  .enter()
-  .append("text")
-  .attr("class", "vertebrateText")
-  .attr("x", d => x(d.Year) + x.bandwidth() / 2)  // Centered on the bar
-  .attr("y", d => y(d.Vertebrates) - 5)  // Slightly above the bar top
-  .text(d => d.Year)
-  .attr("text-anchor", "middle")  // Center the text on the x position
-  .attr("fill", "#5e705d");  // Text color
-
   // Invertebrates Bars
   svg.selectAll(".invertebrateBar")
       .data(endangeredSpeciesList)
@@ -82,4 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("height", d => y(d.Invertebrates))  // Height is directly from the scale
       .attr("width", x.bandwidth())
       .attr("fill", "#a9af7e");
+
+      svg.selectAll(".yearLabel")
+      .data(endangeredSpeciesList)
+      .enter()
+      .append("text")
+      .attr("class", "yearLabel")
+      .attr("x", d => x(d.Year) + x.bandwidth() / 2)  // Center the text within the bar
+      .attr("y", 10)  // Positioning the label at the top of the bar
+      .attr("text-anchor", "middle")  // Center the text
+      .text(d => d.Year)
+      .attr("fill", "black")  // Set the color of the text here
+      .attr("font-size", "10px");  // Set the size of the text here
+
 });
