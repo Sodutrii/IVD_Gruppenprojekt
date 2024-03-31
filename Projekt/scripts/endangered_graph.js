@@ -164,27 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-          svg.selectAll(".vertebrateBar, .invertebrateBar")
-          .transition()
-          .duration(500)
-          .style("fill-opacity", 0.7)
-          .transition()
-          .duration(500)
-          .style("fill-opacity", 1)
-          .repeat(2);  // Repeat the animation a few times
-        
-        // Add instructional text
-        svg.append("text")
-          .attr("x", width / 2)
-          .attr("y", height + margin.bottom - 10) // Adjust as necessary
-          .attr("text-anchor", "middle")
-          .text("Tap on bars to see details")
-          .style("font-size", "12px")
-          .transition()
-          .delay(5000)
-          .duration(1000)
-          .style("opacity", 0)
-          .remove(); // Optionally remove the text after fading out
+  
 });
 
 
