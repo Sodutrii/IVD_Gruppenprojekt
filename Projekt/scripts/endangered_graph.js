@@ -1,6 +1,3 @@
-// Assuming you have included the D3.js library in your HTML
-
-// Prepare the data
 const endangeredSpeciesList = [
   { Year: '2000', Vertebrates: 3507, Invertebrates: 1928 },
   { Year: '2002', Vertebrates: 3521, Invertebrates: 1932 },
@@ -27,57 +24,62 @@ const endangeredSpeciesList = [
 ];
 
 
-  
 document.addEventListener('DOMContentLoaded', function() {
-  // Set dimensions and margins for the graph
-  const margin = { top: 0, right: 10, bottom: 0, left: 10 },
-        viewBoxWidth = 100, // Original SVG width for the viewBox
-        fixedHeight = 100; // Fixed height for the SVG
+  const margin = { top: 20, right: 30, bottom: 40, left: 90 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
-  const svgContainer = d3.select("#chart").append("svg")
-    .attr("viewBox", `0 0 ${viewBoxWidth} ${fixedHeight}`)
-    .attr("preserveAspectRatio", "xMidYMid meet") // Ensures SVG is centered and scales horizontally
-    .style("width", "100%") // Ensure it fills the container width
-    .style("height", `${fixedHeight}px`); // Fixed height
+  const svg = d3.select("#endangered_chart")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  const svg = svgContainer.append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
-
-  // Scale for the bands
+  // X axis - Band scale for years
   const x = d3.scaleBand()
+      .domain(endangeredSpeciesList.map(d => d.Year))
       .range([0, width])
-      .padding(0.1)
-      .domain(endangeredSpeciesList.map(d => d.Year));
+      .padding(0.1);
 
-  // Maximum value to define y scale
-  const maxValue = d3.max(endangeredSpeciesList, d => d.Vertebrates + d.Invertebrates);
-
-  // Scale for vertical positioning (flipped)
+  // Y axis - Linear scale for counts, flipped
   const y = d3.scaleLinear()
-      .range([0, height])
-      .domain([0, maxValue]);
+      .domain([0, d3.max(endangeredSpeciesList, d => Math.max(d.Vertebrates, d.Invertebrates))])
+      .range([0, height]);  // Flipping the chart by reversing the range
 
-  // Adding rectangles for Vertebrates
-  svg.selectAll(".bar-vertebrates")
+  // Vertebrates Bars
+  svg.selectAll(".vertebrateBar")
       .data(endangeredSpeciesList)
-    .enter().append("rect")
-      .attr("class", "bar-vertebrates")
+      .enter()
+      .append("rect")
+      .attr("class", "vertebrateBar")
       .attr("x", d => x(d.Year))
+      .attr("y", 0)  // Bars start from the top
+      .attr("height", d => y(d.Vertebrates))  // Height is directly from the scale
       .attr("width", x.bandwidth())
-      .attr("y", 0) // Starting from top
-      .attr("height", d => y(d.Vertebrates))
-      .attr("fill", "steelblue");
+      .attr("fill", "#e6e5a3");
 
-  // Adding rectangles for Invertebrates stacked on top of Vertebrates
-  svg.selectAll(".bar-invertebrates")
+  // Adding text labels at the top of each vertebrate bar
+  svg.selectAll(".vertebrateText")
+  .data(endangeredSpeciesList)
+  .enter()
+  .append("text")
+  .attr("class", "vertebrateText")
+  .attr("x", d => x(d.Year) + x.bandwidth() / 2)  // Centered on the bar
+  .attr("y", d => y(d.Vertebrates) - 5)  // Slightly above the bar top
+  .text(d => d.Year)
+  .attr("text-anchor", "middle")  // Center the text on the x position
+  .attr("fill", "#5e705d");  // Text color
+
+  // Invertebrates Bars
+  svg.selectAll(".invertebrateBar")
       .data(endangeredSpeciesList)
-    .enter().append("rect")
-      .attr("class", "bar-invertebrates")
+      .enter()
+      .append("rect")
+      .attr("class", "invertebrateBar")
       .attr("x", d => x(d.Year))
+      .attr("y", 0)  // Bars start from the top
+      .attr("height", d => y(d.Invertebrates))  // Height is directly from the scale
       .attr("width", x.bandwidth())
-      .attr("y", d => y(d.Vertebrates)) // Stacked on top of the Vertebrates bar
-      .attr("height", d => y(d.Invertebrates))
-      .attr("fill", "orange");
-
-  // Optionally, you can add text labels inside or on top of the bars here
+      .attr("fill", "#a9af7e");
 });
