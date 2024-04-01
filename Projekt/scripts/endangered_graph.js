@@ -162,11 +162,28 @@ document.addEventListener('DOMContentLoaded', function() {
       svg.selectAll(".vertebrateText, .invertebrateText")
           .style("opacity", 0);
 
-
-
-  
-});
-
+          const svgContainer = d3.select("#endangered_chart svg");
+          svgContainer.classed("slide-down", true); // Start above the viewport
+          svgContainer.style("z-index", "-1");
+      
+          const placeholder = document.getElementById('svg-placeholder');
+      
+          const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      svgContainer.classed("in-view", true);
+                      observer.unobserve(entry.target); // Stop observing after triggering animation
+                      setTimeout(() => {
+                        svgContainer.style("z-index", "1"); // Set z-index to 1 after animation
+                    }, 500);
+                  }
+              });
+          }, {
+              threshold: 0.5, // Adjust based on when you want the animation to start
+          });
+      
+          observer.observe(placeholder); // Start observing the placeholder
+      });
 
 function resize() {
   const newSvgWidth = parseInt(d3.select('#endangered_chart').style('width'));
