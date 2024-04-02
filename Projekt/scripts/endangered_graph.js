@@ -1,10 +1,10 @@
 const endangeredSpeciesList = [
-  { Year: '2000', Vertebrates: 3507, Invertebrates: 1928 },
-  { Year: '2002', Vertebrates: 3521, Invertebrates: 1932 },
-  { Year: '2003', Vertebrates: 3524, Invertebrates: 1959 },
-  { Year: '2004', Vertebrates: 5188, Invertebrates: 1992 },
-  { Year: '2006', Vertebrates: 5622, Invertebrates: 2102 },
-  { Year: '2007', Vertebrates: 5742, Invertebrates: 2109 },
+  //{ Year: '2000', Vertebrates: 3507, Invertebrates: 1928 },
+  //{ Year: '2002', Vertebrates: 3521, Invertebrates: 1932 },
+  //{ Year: '2003', Vertebrates: 3524, Invertebrates: 1959 },
+  //{ Year: '2004', Vertebrates: 5188, Invertebrates: 1992 },
+  //{ Year: '2006', Vertebrates: 5622, Invertebrates: 2102 },
+  //{ Year: '2007', Vertebrates: 5742, Invertebrates: 2109 },
   { Year: '2008', Vertebrates: 5966, Invertebrates: 2496 },
   { Year: '2009', Vertebrates: 6143, Invertebrates: 2639 },
   { Year: '2010', Vertebrates: 6714, Invertebrates: 2904 },
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .append("text")
       .attr("class", "yearLabel")
       .attr("x", d => x(d.Year) + x.bandwidth() / 2)
-      .attr("y", 10)
+      .attr("y", 15)
       .attr("text-anchor", "middle")
       .text(d => d.Year)
       .attr("fill", "#e6e5a3")
