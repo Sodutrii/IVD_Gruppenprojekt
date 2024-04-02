@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
   var slider = document.getElementById("year-slider");
-  slider.style.width = "80%";
+  slider.style.width = "50%";
   slider.style.height = "50px";
   slider.style.setProperty("--webkit-slider-thumb-width", "25px");
   slider.style.setProperty("--webkit-slider-thumb-height", "25px");
@@ -46,9 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Update X axis
       x.domain(currentData.map(d => d.country));
+      xAxis = d3.axisBottom(x);
+      xAxis.tickSize(0)
       svgBarChart.select("#x-axis")
-        .call(d3.axisBottom(x));
-
+        .call(xAxis)
+        .selectAll("text")
+        .attr('transform', 'translate(0,7)')
+        .style("font-size", '1rem');
+        svgBarChart.select("#x-axis")
+        .call(xAxis)
+        .selectAll("path")
+        .style("stroke", 'white')
+        .style("stroke-width", 1);
       // Bind data to bars
       const bars = svgBarChart.selectAll(".bar")
         .data(currentData, d => d.country);
@@ -85,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
           .transition()
           .duration(1000)
           .attr("x", d => x(d.country) + x.bandwidth() / 2)
-          .attr("y", d => d.value === 0 ? y(d.value) - 5 : y(d.value) +20)  // Adjust text position
+          .attr("y", d => d.value === 0 ? y(d.value) - 5 : y(d.value) -7)  // Adjust text position
           .attr("text-anchor", "middle")
           .text(d => d.value)
           .attr("fill-opacity", 1)  // Fade in to fully opaque
           .attr("font-weight", "bold")
-          .attr("fill", "#e6e5a3");
+          .attr("fill", "white");
   }
 });
