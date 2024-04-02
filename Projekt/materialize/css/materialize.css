@@ -34,12 +34,11 @@ html {
   display: flex;
   background-color: #7d8f69;
   align-items: stretch; /* This will make the children fill the container vertically */
-  padding-right: 10vw;
   height: 30vw;
 }
 .text-content {
   flex: 1; /* This will allow the text content to grow but not to fill the entire space */
-  padding: 9vw;
+  padding: 9vw 0 9vw 0;
   color: #ffffff;
   font-size: 1vw;
   display: flex; /* Added to apply flex properties to text content */
@@ -71,7 +70,6 @@ html {
   object-fit: cover; /* This will ensure the image maintains its aspect ratio */
   width: 30vw; /* Adjust based on your design requirements */
   height: 30vw; /* Adjust based on your design requirements */
-  padding-left: 10vh; /* Add left padding to the image */
 }
 
 

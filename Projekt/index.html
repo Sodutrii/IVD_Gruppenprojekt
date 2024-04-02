@@ -82,10 +82,13 @@
 
   <!-- engandgered graph
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div id="endangered_chart">
-    <div id="endangered_chart"></div>
+  <div class="container">
+    <div id="endangered_chart">
+      <div id="endangered_chart"></div>
+    </div>
+    <div id="svg-placeholder" style="height: 1px;"></div>
   </div>
-  <div id="svg-placeholder" style="height: 1px;"></div>
+  
 
   <!-- Empty space -->
   <div style="background-color: #5e705d; height: 300px; margin: 20px 0;"></div>
@@ -94,15 +97,23 @@
   <!-- birb banner
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="banner">
-    <div class="text-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
-        Suspendisse vehicula magna non augue cursus dictum. 
-        Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.</p>
+    <div class="container">
+      <div class="row">
+        <div class="col s6">
+          <div class="text-content" style="font-size: 1.25rem;">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
+              Suspendisse vehicula magna non augue cursus dictum. </p>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="image-content">
+            <img src="./Images/birb.png" alt="Descriptive Text for Image">
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="image-content">
-      <img src="./Images/birb.png" alt="Descriptive Text for Image">
-    </div>
+    
   </div>
 
   <!-- Empty space -->
@@ -356,17 +367,6 @@
     <div class="divider"></div>
     <!-- Empty space -->
     <div style="background-color: #5e705d; height: 15px; margin: 20px 0;"></div>
-      <div class="row">
-        <div class="col s6">
-        EU weit befinden sich
-        <h5 style="display: inline;"><b>34,8%</b></h5> 
-        der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung veratnwortlich.
-        
-        </div>
-        <div class="col s6">
-          In Deutschland gelangt mehr als <h5 style="display: inline;"><b>50%</b></h5> des überschüssigen Stickstoffs über die Landwirtschaft in die Umwelt.
-          </div>
-      </div>
   </div>
 
   <!-- Empty space -->
@@ -375,11 +375,19 @@
     <!-- birb banner
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="banner">
-  <div class="text-content">
-    <p>EU weit befinden sich 34,8% der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung verantwortlich.</p>
-  </div>
-  <div class="image-content">
-    <img src="./Images/watur.png" alt="Descriptive Text for Image">
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+      <div class="text-content">
+        <p style="font-size: 1.25rem;">EU weit befinden sich 34,8% der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung verantwortlich.</p>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="image-content">
+        <img src="./Images/watur.png" alt="Descriptive Text for Image">
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
@@ -391,11 +399,19 @@
   <!-- birb banner Left
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="banner banner-image-left">
-  <div class="image-content">
-    <img src="./Images/shittruck.png" alt="Descriptive Text for Image" class="img-left">
-  </div>
-  <div class="text-content">
-    <p>In Deutschland gelangt mehr als 50% des überschüssigen Stickstoffs über die Landwirtschaft in die Umwelt.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        <div class="image-content">
+          <img src="./Images/shittruck.png" alt="Descriptive Text for Image" class="img-left">
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="text-content" style="font-size: 1.25rem;">
+          <p>In Deutschland gelangt mehr als 50% des überschüssigen Stickstoffs über die Landwirtschaft in die Umwelt.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
