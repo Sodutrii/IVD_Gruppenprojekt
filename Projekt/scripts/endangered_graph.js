@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("y", 0)
       .attr("height", d => y(d.Vertebrates))
       .attr("width", x.bandwidth())
-      .attr("fill", "#e6e5a3");
+      .attr("fill", "#7d8f69");
 
   // Invertebrates Bars
   svg.selectAll(".invertebrateBar")
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("y", 0)
       .attr("height", d => y(d.Invertebrates))
       .attr("width", x.bandwidth())
-      .attr("fill", "#7d8f69");
+      .attr("fill", "#5e705d");
 
   svg.selectAll(".yearLabel")
       .data(endangeredSpeciesList)
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr("y", d => y(d.Vertebrates) - 5)
       .attr("text-anchor", "middle")
       .text(d => d.Vertebrates)
-      .attr("fill", "#5e705d")
+      .attr("fill", "#e6e5a3")
       .style("font-size", "calc(10px + 0.1vw)")
       .attr("font-weight", "bold")
       .style("opacity", 0);
