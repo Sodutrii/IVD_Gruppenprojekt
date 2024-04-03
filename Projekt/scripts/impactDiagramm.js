@@ -13,7 +13,8 @@ var circleRadius = [size * 0.25, size * 0.35, size * 0.5];
 //creating svg image for diagramm
 visualisierung
   .attr("width", svgSize.width)
-  .attr("height", size * 1.3);
+  .attr("height", size * 1.3)
+  .style("overflow", 'visible');
 
 //creating groups for different graph parts
 const outerGraph = visualisierung.append('g')
