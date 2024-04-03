@@ -7,7 +7,7 @@ visualisierung.attr('id', 'HabitatMap');
 visualisierung.style('border-radius', '4px')
 
 //different values for diagramm sizes
-const svgSize = {width: diagramm.clientWidth, height: window.innerHeight};
+const svgSize = {width: diagramm.clientWidth, height: (window.innerHeight * 0.95)};
 
 //creating svg image for diagramm
 visualisierung
