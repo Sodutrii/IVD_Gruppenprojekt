@@ -47,8 +47,25 @@ html {
   height: 100%;
 }
 
+.birb {
+  background: url("/Images/BurrowingOwl.jpg");
+}
+
+.shidtrucc {
+  background: url("/Images/nitrat.png");
+}
+
+.water {
+  background: url("/Images/wasser.png");
+  
+}
+
 .image-content {
-  flex: 0 0 auto; /* This will prevent the image container from growing */
+  /* flex: 0 0 auto; /* This will prevent the image container from growing */
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+
 }
 
 .image-content img {
