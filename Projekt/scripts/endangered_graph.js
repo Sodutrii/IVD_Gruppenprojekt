@@ -179,11 +179,48 @@ document.addEventListener('DOMContentLoaded', function() {
                   }
               });
           }, {
-              threshold: 0.5, // Adjust based on when you want the animation to start
+              threshold: 0.5,
           });
       
-          observer.observe(placeholder); // Start observing the placeholder
-      });
+          observer.observe(placeholder);
+
+          
+          const legendData = [
+            { label: 'Virbeltiere auf der Roten Liste', color: '#7d8f69' },
+            { label: 'Virbellose auf der Roten Liste', color: '#5e705d' }
+        ];
+    
+  const legend = svg.append('g')
+                    .attr('class', 'legend')
+                    .attr('transform', `translate(${width - 1175},${350})`);
+    
+legend.selectAll('.legend-square')
+      .data(legendData)
+      .enter()
+      .append('rect')
+      .attr('class', 'legend-square')
+      .attr('x', 0)
+      .attr('y', (d, i) => i * 20) // Space out the squares vertically
+      .attr('width', 15)
+      .attr('height', 15)
+      .attr('fill', d => d.color)
+      .attr('rx', 3) // Add this line to set the x-axis radius for rounded corners
+      .attr('ry', 3);
+      
+    
+// 4. Add Text Labels
+legend.selectAll('.legend-text')
+      .data(legendData)
+      .enter()
+      .append('text')
+      .attr('class', 'legend-text')
+      .attr('x', 20) // Position text to the right of the squares
+      .attr('y', (d, i) => i * 20 + 12,5) // Align text with squares
+      .text(d => d.label)
+      .attr('fill', '#ffffff')
+      .attr('font-size', '15px');
+    
+    });
 
 function resize() {
   const newSvgWidth = parseInt(d3.select('#endangered_chart').style('width'));
