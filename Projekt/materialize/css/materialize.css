@@ -44,17 +44,34 @@ html {
   display: flex; /* Added to apply flex properties to text content */
   flex-direction: column; /* Align children of text-content vertically */
   justify-content: center; /* Center text-content's children vertically */
+  height: 100%;
+}
+
+.birb {
+  background: url("/Projekt/Images/BurrowingOwl.jpg");
+}
+
+.shidtrucc {
+  background: url("/Projekt/Images/nitrat.png");
+}
+
+.water {
+  background: url("/Projekt/Images/wasser.png");
+
 }
 
 .image-content {
-  flex: 0 0 auto; /* This will prevent the image container from growing */
+  /* flex: 0 0 auto; /* This will prevent the image container from growing */
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+
 }
 
 .image-content img {
   height: 100%;
   width: auto; /* Adjust the width automatically */
   object-fit: cover; /* This will make sure the image covers the area without distorting */
-  width: 30vw;
   height: 30vw;
 }
 
@@ -84,6 +101,7 @@ html {
   box-shadow: 0px 0px 4px #4d4d4d;
   overflow: hidden;
   cursor: pointer;
+  text-align: left;
 }
 .legendButton:active{
   background-color: #667556;
@@ -99,6 +117,7 @@ html {
   width: 2.5em;
   box-shadow: 0px 0px 4px #4d4d4d;
   cursor: pointer;
+  overflow: hidden;
 }
 .zoomInButton:active{
   background-color: #667556;
@@ -114,6 +133,7 @@ html {
   width: 2.5em;
   box-shadow: 0px 0px 4px #4d4d4d;
   cursor: pointer;
+  overflow: hidden;
 }
 .zoomOutButton:active{
   background-color: #667556;

@@ -68,18 +68,19 @@
     <!-- Hero Image Section
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-  <div class="hero-image" style="position: relative; min-height: 600px; /* Increased height */ background-image: url('./Images/cat_nature.png'); background-size: cover; background-position: center;">
-    <div class="hero-text" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); color: white; text-align: left; padding-left: 6em;">
-      <h1>Biodiversität<br>in der EU</h1>
+  <div class="hero-image" style="position: relative; min-height: 700px; /* Increased height */ background-image: url('./Images/squirrel.jpg'); background-size: cover; background-position: center;">
+    <div class="hero-text" style="position: absolute; top: 40%; right: 15%; transform: translateY(-50%); color: white; text-align: left;">
+      <h1>Biodiversität<br>in Europa</h1>
     </div>
   </div>
   
   <!-- Information Bar -->
-  <div class="info-bar" style="background-color: #5E705D; padding: 1em; min-height: 150px; /* Increased height */ text-align: center; color: white;">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam urna varius justo condimentum, sit amet vulputate velit tristique.</p>
-  </div>
+  <div class="info-bar" style="background-color: #5E705D; padding: 1em; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: left; color: white;">
+    <p>Auf dieser Website werden interaktive Grafiken präsentiert, die Einblicke in die Entwicklung von Naturschutzgebieten in Europa geben.<br>Diese Visualisierungen bieten eine detaillierte Perspektive auf die ökologischen Herausforderungen und Fortschritte in den Schutzgebieten.</p>
+</div>    
 
   <div style="width: 100%; height: 600px; background-color: #495748;position: absolute; z-index: -1;"></div>
+
   <!-- engandgered graph
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" style="z-index: 1;">
@@ -90,26 +91,28 @@
   </div>
 
   <div style="width: 100%; background-color: #495748;">  
+  <div id="legend_chart" style="padding-left: 18%;"></div>
+
 
   <!-- Empty space -->
-  <div style="height: 300px; margin: 20px 0;"></div>
+  <div style="height: 200px; margin: 20px 0;"></div>
 
 
   <!-- birb banner
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="banner" style="background-color: #5E705D;">
     <div class="container">
-      <div class="row">
-        <div class="col s6">
+      <div class="row" style="height: 100%;">
+        <div class="col s5" style="height: 100%;">
           <div class="text-content" style="font-size: 1.25rem;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
-              Suspendisse vehicula magna non augue cursus dictum. </p>
+            <p>Innerhalb von 40 Jahren, verloren die EU-Statten fast jeden fünften Brutvogel. 
+              Damit leben heute etwa 600 Millionen Vögel weniger auf dem Gebiet der Europäischen Union als noch im Jahr 1980.
+              Das entspricht dem sterben von ca. 40.000 Vögeln pro Tag. </p>
           </div>
         </div>
-        <div class="col s6">
-          <div class="image-content">
-            <img src="./Images/birb.png" alt="Descriptive Text for Image">
+        <div class="col s7" style="height: 100%;">
+          <div class="image-content birb">
+            <img src="./Images/BurrowingOwl.jpg" alt="Descriptive Text for Image" style="float: right;">
           </div>
         </div>
       </div>
@@ -127,12 +130,11 @@
     <div id="karteHeader">
       <h3 style="color: white;">Naturschutzgebiete in Europa</h3>
     </div>
-    <div class="col s8">
+    <div class="col s9">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
-        Suspendisse vehicula magna non augue cursus dictum. 
-        Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.
+        Naturschutzgebiete sind eine effektive Möglichkeit die Biodiversität zu schützen und zu fördern. 
+        Trotz ihrem speziellen Status sind viele Naturschutzgebiete, durch menschen gemachte Einflüssen negativ beeinflussst worden.
+        Die folgende Karte zeigt Naturschutzgebiet & dessen Umwelteinflüsse, die sie ausgesetzt sind und entsprechende geschützte Arten.
       </p>
     </div>
   </div>
@@ -221,7 +223,7 @@
             </select>
           </div>
         </div>
-        <div class="col s3">
+        <div class="col s4">
           <div class="input-field">
             <select onchange="filterBioRegion(this.value)">
               <option value="all">Alle Biografischenregion</option>
@@ -329,28 +331,50 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">zurück</a>
       </div>
     </div>
+  </div>
+  <!-- Empty space -->
+  <div style="background-color: #5e705d; height: 200px; margin: 20px 0;"></div>
+
+    <!-- wasser banner
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="banner" style="background-color: #495748;">
+  <div class="container">
+    <div class="row" style="height: 100%;">
+      <div class="col s5" style="height: 100%;">
+      <div class="text-content">
+        <p style="font-size: 1.25rem;">EU weit befinden sich 34,8% der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung verantwortlich.</p>
+      </div>
+    </div>
+    <div class="col s7" style="height: 100%;">
+      <div class="image-content water">
+        <img src="./Images/wasser.png" alt="Descriptive Text for Image" style="width: 100%;">
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 
   <!-- Empty space -->
-  <div style="background-color: #5e705d; height: 300px; margin: 20px 0;"></div>
+  <div style="background-color: #5e705d; height: 200px; margin: 20px 0;"></div>
+
 
   <!-- Impact Diagram
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-    <div class="divider" id="impactDiagrammHeader"></div>
+<div class="container">
+    <div id="impactDiagrammHeader"></div>
     <h3 style="color: white;">Einflüsse auf Naturschutzgebiete</h3>
     <div class="row">
-      <div class="col s8">
+      <div class="col s9">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
-          Suspendisse vehicula magna non augue cursus dictum. 
-          Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.
+          Naturschutzgebiete sind menschen gemachten Einflüssen ausgesetzt, dabei handelt es sich meistens um eine Art Verschmutzung. 
+          Die am meisten auftretenden Verschmutzungen lassen sich in Kategorien aufteilen, bestimmt durch den Wirkstoff oder den Effekt der Verschmutzung.
+          Das folgende Diagramm zeigt den Anteil der auftretenden Verschmutzungen und derren Intensität an.
         </p>
       </div>
     </div>
     <div class="row" style="border-width: 2px; border-radius: 4px;border-style: solid; border-color: #7D8F69">
       <div class="col s7">
-        <div id="impactDiagramm" style="margin: 5px; padding-top: 1.5rem;"></div>
+        <div id="impactDiagramm" style="padding-top: 1.5rem;"></div>
       </div>
       <div class="col s5" >
         <div style="padding: 0.75rem 1.5rem 1.5rem 1.5rem; border-radius: 4px; height: 466px">
@@ -365,49 +389,25 @@
         </p>
       </div>
     </div>
-    <div class="divider"></div>
-    <!-- Empty space -->
-    <div style="background-color: #5e705d; height: 15px; margin: 20px 0;"></div>
   </div>
 
-  <!-- Empty space -->
-  <div style="background-color: #5e705d; height: 300px; margin: 20px 0;"></div>
-
-    <!-- birb banner
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="banner" style="background-color: #495748;">
-  <div class="container">
-    <div class="row">
-      <div class="col s6">
-      <div class="text-content">
-        <p style="font-size: 1.25rem;">EU weit befinden sich 34,8% der Grundwasserkörper in einem schlechten chemischen Zustand. Dabei ist für 27,1% der betroffenen Grundwasserkörper eine Stickstoffüberbelastung verantwortlich.</p>
-      </div>
-    </div>
-    <div class="col s6">
-      <div class="image-content">
-        <img src="./Images/watur.png" alt="Descriptive Text for Image">
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Empty space -->
-<div style="background-color: #5e705d; height: 400px; margin: 20px 0;"></div>
+<div style="background-color: #5e705d; height: 200px; margin: 20px 0;"></div>
 
 
   <!-- birb banner Left
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="banner banner-image-left" style="background-color: #495748;">
   <div class="container">
-    <div class="row">
-      <div class="col s6">
-        <div class="image-content">
-          <img src="./Images/shittruck.png" alt="Descriptive Text for Image" class="img-left">
+    <div class="row" style="height: 100%;">
+      <div class="col s8" style="height: 100%;">
+        <div class="image-content shidtrucc">
+          <img src="./Images/nitrat.png" alt="Descriptive Text for Image" class="img-left" style="width: 100%;">
         </div>
       </div>
-      <div class="col s6">
+      <div class="col s4" style="height: 100%;">
         <div class="text-content" style="font-size: 1.25rem;">
           <p>In Deutschland gelangt mehr als 50% des überschüssigen Stickstoffs über die Landwirtschaft in die Umwelt.</p>
         </div>
@@ -422,17 +422,14 @@
 
 <div class="container" id="barGraphTimeHeader">
 <!-- Empty space -->
-  <div style="background-color: #5e705d; height: 100px; margin: 20px 0;"></div>
+  <div style="background-color: #5e705d; height: 200px; margin: 20px 0;"></div>
 
     <h3>Naturschutzgebiete über Zeit</h3>
     <div class="row">
       <div class="row">
         <div class="col s8">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Vivamus lacinia ultricies risus, nec consequat eros fermentum vitae. 
-            Suspendisse vehicula magna non augue cursus dictum. 
-            Nam pulvinar tellus leo, quis tincidunt dolor dapibus eget.
+            Darstellung der Entwicklung bei der Neueröffnung von Naturschutzgebieten in europäischen Ländern.
           </p>
         </div>
       </div>
@@ -452,37 +449,58 @@
 </div>
 </div>
 
+<!-- Empty space -->
+<div style="background-color: #5e705d; height: 100px; margin: 20px 0;"></div>
+
 <!--Footer-->
 <footer class="page-footer">
   <div class="container">
     <div class="row">
-      <div class="col s4">
-        <h5 class="white-text">IVD - Projekt</h5>
-        <p class="grey-text text-lighten-4">Dieses Projekt wurde im Rahmen der Vorlesung "Interactive Visual Design" im Wintersemester 2023/24, der Uni Ulm erstellt.</p>
+      <div class="col s2">
+        <h6 class="white-text">IVD - Projekt Wi2023/24</h6>
+        <p class="grey-text text-lighten-4">
+          Max Zgonnik<br>
+          Laurin Bischof
+        </p>
       </div>
-      <div class="col s4">
-        <h5 class="white-text">Datensätze</h5>
+      <div class="col s2">
+        <h6 class="white-text">Betreuer</h6>
+        <ul>
+          <li>Bernadett Ritter</li>
+          <li>Roger Walker</li>
+          <li>Albin Zeqqiri</li>
+        </ul>
+      </div>
+      <div class="col s2">
+        <h6 class="white-text">Datensätze</h6>
         <ul>
           <li><a class="grey-text text-lighten-3" href="https://www.eea.europa.eu/en/datahub/datahubitem-view/6fc8ad2d-195d-40f4-bdec-576e7d1268e4">Natura 2000</a></li>
           <li><a class="grey-text text-lighten-3" href="https://github.com/leakyMirror/map-of-europe">Europa Karte</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://de.statista.com/statistik/daten/studie/37749/umfrage/artenvielfalt-tiere-auf-der-roten-liste/">Artenvielfalt</a></li>
         </ul>
       </div>
-      <div class="col s4">
-        <h5 class="white-text">Bilder</h5>
+      <div class="col s2">
+        <h6 class="white-text">Bilder</h6>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.countryliving.com/uk/wildlife/countryside/a33884478/help-red-squirrels/">Eichhörnchen</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://sandiegozoowildlifealliance.org/species/burrowing-owl">Eule</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.reisereporter.de/reiseziele/europa/deutschland/bayern/diese-wasserfaelle-in-bayern-musst-du-sehen-ZRALOKECUSIKLJU73OYOSUCSOY.html">Wasser</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.ndr.de/ratgeber/verbraucher/Wie-Nitrat-Grundwasser-belastet,wasser714.html">Landwirtschaft</a></li>
+        </ul>
+      </div>
+      <div class="col s2">
+        <h6 class="white-text">Texte</h6>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="https://www.sueddeutsche.de/wissen/voegel-1.5471201">Vögel</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.umweltbundesamt.de/themen/landwirtschaft/umweltbelastungen-der-landwirtschaft/stickstoff#gefahren-fur-die-umwelt">Grundwasser</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.umweltbundesamt.de/themen/landwirtschaft/umweltbelastungen-der-landwirtschaft/stickstoff#einfuhrung">Stickstoff</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright">
     <div class="container">
-    Max Zgonnik, Laurin Bischof
+    Uni Ulm, Institut für Medieninformatik
     </div>
   </div>
 </footer>

@@ -179,11 +179,53 @@ document.addEventListener('DOMContentLoaded', function() {
                   }
               });
           }, {
-              threshold: 0.5, // Adjust based on when you want the animation to start
+              threshold: 0.5,
           });
       
-          observer.observe(placeholder); // Start observing the placeholder
-      });
+          observer.observe(placeholder);
+
+          const legendWidth = 300; // or whatever width you want
+          const legendHeight = 100; // or adjust based on the number of items
+      
+          const legendSvg = d3.select("#legend_chart")
+              .append("svg")
+              .attr("width", legendWidth)
+              .attr("height", legendHeight)
+              .append("g")
+              .attr("transform", "translate(10,10)"); // Add some padding
+      
+          const legendData = [
+              { label: 'Virbeltiere auf der Roten Liste', color: '#7d8f69' },
+              { label: 'Virbellose auf der Roten Liste', color: '#5e705d' }
+          ];
+      
+          // Create legend squares
+          legendSvg.selectAll('.legend-square')
+              .data(legendData)
+              .enter()
+              .append('rect')
+              .attr('class', 'legend-square')
+              .attr('x', 0)
+              .attr('y', (d, i) => i * 25) // Space out the squares vertically
+              .attr('width', 15)
+              .attr('height', 15)
+              .attr('fill', d => d.color)
+              .attr('rx', 3)
+              .attr('ry', 3);
+      
+          // Create legend text
+          legendSvg.selectAll('.legend-text')
+              .data(legendData)
+              .enter()
+              .append('text')
+              .attr('class', 'legend-text')
+              .attr('x', 20) // Position text to the right of the squares
+              .attr('y', (d, i) => i * 25 + 12) // Align text with squares
+              .text(d => d.label)
+              .attr('fill', '#ffffff');
+                
+    
+    });
 
 function resize() {
   const newSvgWidth = parseInt(d3.select('#endangered_chart').style('width'));

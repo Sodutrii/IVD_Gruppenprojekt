@@ -13,7 +13,8 @@ var circleRadius = [size * 0.25, size * 0.35, size * 0.5];
 //creating svg image for diagramm
 visualisierung
   .attr("width", svgSize.width)
-  .attr("height", size * 1.3);
+  .attr("height", size * 1.3)
+  .style("overflow", 'visible');
 
 //creating groups for different graph parts
 const outerGraph = visualisierung.append('g')
@@ -50,7 +51,7 @@ var innerArcs = innerPie(innerData);
 //Scales: color & labels
 var innerColor = d3.scaleOrdinal()
   .domain(innerData)
-  .range(["#F4CA00", "#F38904", "#F33107"]);
+  .range(["#fff176", "#ff8a65", "#e57373"]);
 
 var innerlabelScale = d3.scaleOrdinal()
   .domain(innerData)
@@ -109,6 +110,7 @@ function onSelectingBigGraphSegment(data){
   .attr("transform", function(d) {return `translate(${arcGen.centroid(d)})`})
   .style("text-anchor", "middle")
   .style("font-size", 14)
+  .style('fill', '#333333')
 }
 //handles the selection Animation vor outerGraph Segments
 function outerGraphSelectAnimation(data){
