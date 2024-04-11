@@ -184,41 +184,46 @@ document.addEventListener('DOMContentLoaded', function() {
       
           observer.observe(placeholder);
 
-          
-          const legendData = [
-            { label: 'Virbeltiere auf der Roten Liste', color: '#7d8f69' },
-            { label: 'Virbellose auf der Roten Liste', color: '#5e705d' }
-        ];
-    
-  const legend = svg.append('g')
-                    .attr('class', 'legend')
-                    .attr('transform', `translate(${width - 1175},${350})`);
-    
-legend.selectAll('.legend-square')
-      .data(legendData)
-      .enter()
-      .append('rect')
-      .attr('class', 'legend-square')
-      .attr('x', 0)
-      .attr('y', (d, i) => i * 20) // Space out the squares vertically
-      .attr('width', 15)
-      .attr('height', 15)
-      .attr('fill', d => d.color)
-      .attr('rx', 3) // Add this line to set the x-axis radius for rounded corners
-      .attr('ry', 3);
+          const legendWidth = 300; // or whatever width you want
+          const legendHeight = 100; // or adjust based on the number of items
       
-    
-// 4. Add Text Labels
-legend.selectAll('.legend-text')
-      .data(legendData)
-      .enter()
-      .append('text')
-      .attr('class', 'legend-text')
-      .attr('x', 20) // Position text to the right of the squares
-      .attr('y', (d, i) => i * 20 + 12,5) // Align text with squares
-      .text(d => d.label)
-      .attr('fill', '#ffffff')
-      .attr('font-size', '15px');
+          const legendSvg = d3.select("#legend_chart")
+              .append("svg")
+              .attr("width", legendWidth)
+              .attr("height", legendHeight)
+              .append("g")
+              .attr("transform", "translate(10,10)"); // Add some padding
+      
+          const legendData = [
+              { label: 'Virbeltiere auf der Roten Liste', color: '#7d8f69' },
+              { label: 'Virbellose auf der Roten Liste', color: '#5e705d' }
+          ];
+      
+          // Create legend squares
+          legendSvg.selectAll('.legend-square')
+              .data(legendData)
+              .enter()
+              .append('rect')
+              .attr('class', 'legend-square')
+              .attr('x', 0)
+              .attr('y', (d, i) => i * 25) // Space out the squares vertically
+              .attr('width', 15)
+              .attr('height', 15)
+              .attr('fill', d => d.color)
+              .attr('rx', 3)
+              .attr('ry', 3);
+      
+          // Create legend text
+          legendSvg.selectAll('.legend-text')
+              .data(legendData)
+              .enter()
+              .append('text')
+              .attr('class', 'legend-text')
+              .attr('x', 20) // Position text to the right of the squares
+              .attr('y', (d, i) => i * 25 + 12) // Align text with squares
+              .text(d => d.label)
+              .attr('fill', '#ffffff');
+                
     
     });
 
